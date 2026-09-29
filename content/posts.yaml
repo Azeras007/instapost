@@ -1,0 +1,353 @@
+# File d'attente des posts. Publiés dans l'ordre du fichier, un tous les 2 jours.
+# Seuls les posts "ready: true" sont publiés ; un post déjà publié (voir state/published.json) n'est jamais republié.
+#
+# Gabarits de slide disponibles (champ "template") :
+#   cover   : kicker, title, subtitle
+#   quote   : kicker, text, author
+#   list    : kicker, title, items: [{title, text}]  (3-4 items max)
+#   big     : kicker, big (mot/chiffre géant), title, text
+#   domaine : number, name, location, tags: [...], text, price
+#   cta     : title, text, button
+# Options communes : theme (wine | cream | vine), image (ex: assets/photos/domaine.jpg -> photo en fond)
+# Tailles ajustables si un texte déborde : titleSize, textSize, bigSize
+#
+# Légende : "caption" (commune) ; "linkedin: {caption: ...}" ou "instagram: {caption: ...}" pour surcharger par réseau.
+# Un carrousel = plusieurs slides (10 max).
+
+- id: manifeste
+  ready: true
+  slides:
+    - template: quote
+      theme: wine
+      kicker: Notre conviction
+      text: "Le meilleur vin de ta région est peut-être à 20 minutes de chez toi."
+  caption: |
+    On traverse la France pour des étiquettes connues… et on passe à côté du domaine du village d'à côté.
+
+    Chez Vinea, on est convaincus d'une chose simple : les pépites sont souvent tout près. Des vignerons passionnés, sans budget pub, sans place en rayon, qui font des vins incroyables à des prix honnêtes.
+
+    Notre mission : te les faire découvrir, et te permettre de les soutenir.
+
+    Et toi, tu connais les domaines autour de chez toi ? 👇
+  linkedin:
+    caption: |
+      On traverse la France pour des étiquettes connues… et on passe à côté du domaine du village d'à côté.
+
+      Vinea part d'une conviction simple : les meilleurs vins sont souvent tout près. Des vignerons passionnés, sans budget marketing ni place en grande surface, qui produisent des vins remarquables à des prix justes.
+
+      Nous construisons la marketplace qui relie directement les consommateurs aux domaines de leur région : achat de vins moins cher qu'en grande surface, expériences au domaine, et possibilité de soutenir financièrement les vignerons locaux.
+  hashtags: [vinlocal, pepitesduvin]
+
+- id: pourquoi-acheter-au-domaine
+  ready: true
+  slides:
+    - template: list
+      theme: cream
+      kicker: Circuit court
+      title: "Pourquoi acheter\ndirectement au domaine ?"
+      items:
+        - title: Un prix plus juste
+          text: "Moins d'intermédiaires, moins de marges empilées.\nSouvent moins cher qu'en grande surface."
+        - title: Un vigneron mieux payé
+          text: "Ton argent va à celui qui a fait le vin."
+        - title: Tu sais ce que tu bois
+          text: "Qui, où, comment : tout est transparent."
+  caption: |
+    Acheter en direct, c'est payer le vin… pas le trajet, le stockage et les marges successives.
+
+    ✔️ Un prix plus juste pour toi
+    ✔️ Une meilleure rémunération pour le vigneron
+    ✔️ Une traçabilité totale
+
+    C'est exactement ce que Vinea rend simple : les domaines près de chez toi, au bout de ton doigt.
+  hashtags: [achatdirect, vinpascher]
+
+- id: mythe-bon-vin-cher
+  ready: true
+  slides:
+    - template: big
+      theme: vine
+      kicker: Idée reçue
+      big: Mythe
+      title: "« Un bon vin coûte forcément cher. »"
+      text: "Faux. Une partie du prix en rayon n'a rien à voir avec ce qu'il y a dans la bouteille : transport, distribution, marketing.\nEn direct du domaine, tu paies surtout le travail du vigneron."
+  caption: |
+    Idée reçue n°1 : un bon vin, c'est forcément un vin cher.
+
+    En réalité, le prix d'une bouteille en magasin inclut beaucoup de choses qui ne sont pas dans ton verre : logistique, distribution, publicité, marges…
+
+    Beaucoup de petits domaines produisent des vins excellents qu'ils vendent à prix doux, simplement parce qu'ils vendent en direct. 🍷
+
+    Tu as déjà eu une belle surprise avec une bouteille pas chère ? Raconte-nous !
+  hashtags: [ideerecue, bonplanvin]
+
+# ⬇️ À COMPLÉTER avec de vrais domaines (idéalement partenaires Vinea), puis passer ready: true.
+# Astuce : ajoute une photo du domaine dans assets/photos/ et renseigne "image:" pour un rendu encore meilleur.
+- id: domaines-sous-cotes-1
+  ready: false
+  slides:
+    - template: cover
+      theme: wine
+      kicker: Pépites locales
+      title: "3 domaines\nsous-cotés\nA_COMPLETER"
+      subtitle: "Des vins qui valent bien plus que leur prix.\nGlisse pour les découvrir ›"
+    - template: domaine
+      theme: cream
+      number: "01"
+      name: "Domaine A_COMPLETER"
+      location: "Village, appellation"
+      tags: ["Rouge", "Cépage", "Bio"]
+      text: "Pourquoi on l'aime, en 2 phrases."
+      price: "À partir de XX € la bouteille"
+    - template: domaine
+      theme: cream
+      number: "02"
+      name: "Domaine A_COMPLETER"
+      location: "Village, appellation"
+      tags: ["Blanc", "Cépage"]
+      text: "Pourquoi on l'aime, en 2 phrases."
+      price: "À partir de XX € la bouteille"
+    - template: domaine
+      theme: cream
+      number: "03"
+      name: "Domaine A_COMPLETER"
+      location: "Village, appellation"
+      tags: ["Rosé", "Cépage"]
+      text: "Pourquoi on l'aime, en 2 phrases."
+      price: "À partir de XX € la bouteille"
+    - template: cta
+      theme: wine
+      title: "Découvre les domaines\nprès de chez toi"
+      text: "Achète en direct, vis des expériences\net soutiens les vignerons locaux."
+  caption: |
+    3 domaines sous-cotés autour de A_COMPLETER qui méritent toute ton attention 👀
+
+    1️⃣ Domaine … : …
+    2️⃣ Domaine … : …
+    3️⃣ Domaine … : …
+
+    Tu les connaissais ? Enregistre ce post pour ta prochaine sortie 🍇
+  hashtags: [pepitesduvin, domainesouscote]
+
+- id: soutenir-les-domaines
+  ready: true
+  slides:
+    - template: cover
+      theme: vine
+      kicker: Soutenir le local
+      title: "Soutenir un domaine,\nce n'est pas\nfaire un don."
+      subtitle: "C'est investir dans ce que tu bois,\net payer ton vin moins cher."
+      titleSize: 96
+  caption: |
+    Sur Vinea, tu peux soutenir financièrement les domaines près de chez toi.
+
+    Pourquoi c'est important ? Parce que les petits domaines portent seuls des investissements lourds : matériel, conversion en bio, reprise par une nouvelle génération…
+
+    Toi, tu les aides à se développer. Eux, ils continuent à faire le vin que tu aimes. Et tu profites de bouteilles moins chères qu'en grande surface. Tout le monde y gagne. 🤝
+  hashtags: [soutienlocal, economielocale]
+
+- id: reperer-domaine-sous-cote
+  ready: true
+  slides:
+    - template: list
+      theme: wine
+      kicker: Le guide
+      title: "Comment repérer\nun domaine sous-coté"
+      titleSize: 68
+      items:
+        - title: Regarde à côté des grands noms
+          text: "Les appellations voisines des plus célèbres partagent souvent les mêmes sols, à des prix bien plus doux."
+        - title: Suis les jeunes repreneurs
+          text: "Nouvelle génération = nouvelles idées, et des prix encore raisonnables."
+        - title: Ne juge pas l'étiquette
+          text: "Pas de budget marketing ne veut pas dire pas de talent."
+        - title: Va goûter sur place
+          text: "Rien ne remplace une dégustation au domaine."
+  caption: |
+    Les domaines sous-cotés, c'est notre obsession chez Vinea. Voici nos 4 réflexes pour les dénicher 🔎
+
+    1. Regarde les appellations voisines des grands noms
+    2. Suis les jeunes vignerons qui reprennent un domaine
+    3. Ne te fie pas au design de l'étiquette
+    4. Va goûter sur place !
+
+    Enregistre ce post pour ta prochaine balade dans les vignes 📌
+  hashtags: [conseilvin, pepitesduvin]
+
+- id: experiences-au-domaine
+  ready: true
+  slides:
+    - template: quote
+      theme: cream
+      kicker: Expériences
+      text: "Un vin a meilleur goût quand tu as serré la main de celui qui l'a fait."
+      textSize: 72
+  caption: |
+    Vinea, ce n'est pas qu'une boutique de vins. C'est aussi une marketplace d'expériences 🍇
+
+    Visite de cave, dégustation avec le vigneron, participation aux vendanges, ateliers accords mets-vins… Autant d'occasions de découvrir les domaines près de chez toi autrement.
+
+    Tu préférerais quoi : une journée de vendanges ou une dégustation au coucher du soleil ?
+  hashtags: [oenotourisme, degustation, experiencevin]
+
+- id: question-domaine-local
+  ready: true
+  slides:
+    - template: big
+      theme: wine
+      kicker: À toi de jouer
+      big: "?"
+      bigSize: 300
+      title: "Quel domaine près de chez toi mérite d'être connu ?"
+      text: "Dis-le nous en commentaire.\nOn ira peut-être le rencontrer."
+  caption: |
+    On veut tes pépites ! 🍷
+
+    Quel domaine près de chez toi mérite d'être (beaucoup) plus connu ? Donne-nous son nom et ta région en commentaire.
+
+    Les plus cités auront peut-être droit à leur mise en avant sur notre compte 👀
+  hashtags: [pepitesduvin, vinlocal]
+
+- id: consommer-local-ca-change-quoi
+  ready: true
+  slides:
+    - template: list
+      theme: vine
+      kicker: Consommer local
+      title: "Ça change quoi,\nconcrètement ?"
+      items:
+        - title: Moins de kilomètres
+          text: "Ton vin n'a pas traversé le pays pour arriver dans ton verre."
+        - title: L'argent reste dans ta région
+          text: "Il fait vivre les vignerons, les villages, les emplois d'à côté."
+        - title: Un lien direct
+          text: "Tu sais qui a fait ton vin, et tu peux aller le voir."
+  caption: |
+    Consommer local, ce n'est pas juste une tendance. C'est un choix qui a un impact réel 🌱
+
+    🚚 Moins de transport
+    💶 Une économie locale qui tourne
+    🤝 Un lien direct avec ceux qui produisent
+
+    Avec Vinea, consommer local devient aussi simple que d'acheter en ligne.
+  hashtags: [locavore, economielocale, vinlocal]
+
+- id: lexique-vigneron-negociant
+  ready: true
+  slides:
+    - template: list
+      theme: cream
+      kicker: Petit lexique
+      title: "Qui a vraiment fait\nton vin ?"
+      items:
+        - title: Vigneron indépendant
+          text: "Il cultive ses vignes, fait son vin et le met en bouteille lui-même."
+        - title: Négociant
+          text: "Il achète raisins ou vins à d'autres producteurs, puis les assemble et les vend sous sa marque."
+        - title: Cave coopérative
+          text: "Plusieurs viticulteurs mettent en commun leurs raisins et leur vinification."
+  caption: |
+    Sur l'étiquette, ce n'est pas toujours évident de savoir qui a fait ton vin 🧐
+
+    🍇 Vigneron indépendant : de la vigne à la bouteille
+    🏷️ Négociant : achète, assemble et commercialise
+    🤝 Coopérative : des vignerons qui mutualisent
+
+    Aucun n'est « meilleur » par principe, mais c'est bien de savoir ce qu'on achète. Sur Vinea, tu sais toujours de quel domaine vient ta bouteille.
+  hashtags: [lexiqueduvin, apprendrelevin]
+
+- id: pourquoi-vinea-existe
+  ready: true
+  slides:
+    - template: cover
+      theme: wine
+      kicker: Notre histoire
+      title: "Pourquoi\nVinea existe"
+      subtitle: "3 constats, 1 solution.\nGlisse ›"
+    - template: big
+      theme: cream
+      big: "1"
+      title: "Les domaines près de chez toi sont invisibles."
+      text: "Pas de budget pub, pas de place en rayon.\nPourtant, ils font souvent aussi bien que les étiquettes connues."
+    - template: big
+      theme: cream
+      big: "2"
+      title: "Tu paies cher un vin dont tu ne sais rien."
+      text: "Entre le vigneron et toi : transport, distribution, marges.\nEt aucun lien avec ceux qui l'ont produit."
+    - template: big
+      theme: cream
+      big: "3"
+      title: "Les vignerons ont besoin de soutien."
+      text: "Investir, se développer, transmettre :\nles petits domaines le font souvent seuls."
+    - template: cta
+      theme: wine
+      title: "Vinea relie directement\nles domaines et toi."
+      text: "Vins moins chers qu'en grande surface,\nexpériences au domaine,\nsoutien aux vignerons locaux."
+  caption: |
+    Pourquoi on a créé Vinea ? 3 constats 👇
+
+    1️⃣ Les meilleurs domaines près de chez toi sont souvent invisibles
+    2️⃣ Tu paies cher un vin dont tu ne connais pas l'origine
+    3️⃣ Les petits vignerons ont besoin de soutien pour se développer
+
+    Notre réponse : une marketplace qui te relie directement aux domaines de ta région. Des vins moins chers qu'en grande surface, des expériences uniques, et la possibilité de soutenir ceux qui font ton vin.
+  hashtags: [startup, vinlocal]
+
+- id: conserver-son-vin
+  ready: true
+  slides:
+    - template: list
+      theme: wine
+      kicker: Astuce
+      title: "3 réflexes pour bien\nconserver ton vin"
+      items:
+        - title: Couché
+          text: "Le bouchon reste humide et ne laisse pas passer l'air."
+        - title: À l'abri de la lumière
+          text: "Les UV abîment le vin, même à travers le verre."
+        - title: Température stable
+          text: "Autour de 12-14 °C, sans variations brusques."
+  caption: |
+    Tu as craqué pour quelques bouteilles au domaine ? Voici comment les garder au top 🍷
+
+    🛏️ Couchées, pour que le bouchon ne sèche pas
+    🌑 À l'abri de la lumière
+    🌡️ Une température fraîche et surtout stable
+
+    Pas de cave ? Un placard au fond d'une pièce fraîche fait très bien l'affaire.
+  hashtags: [conseilvin, cave]
+
+- id: vigneron-vit-de-son-travail
+  ready: true
+  slides:
+    - template: quote
+      theme: vine
+      kicker: Notre conviction
+      text: "Chaque bouteille achetée en direct, c'est un vigneron qui vit mieux de son travail."
+      textSize: 70
+  caption: |
+    Derrière chaque bouteille, il y a des mois de travail : la taille en hiver, les traitements, les vendanges, la vinification, l'élevage…
+
+    Quand tu achètes en direct, une bien plus grande part de ce que tu paies revient à celui qui a fait tout ça. C'est pour ça que Vinea existe. 🍇
+  hashtags: [vigneron, achatdirect]
+
+# Modèle "domaine du mois" : à dupliquer / compléter, puis ready: true.
+- id: domaine-du-mois-1
+  ready: false
+  slides:
+    - template: domaine
+      theme: wine
+      # image: assets/photos/domaine-du-mois-1.jpg
+      number: "Domaine du mois"
+      name: "Domaine A_COMPLETER"
+      location: "Village, appellation"
+      tags: ["Cépage", "Bio", "Expérience dispo"]
+      text: "L'histoire du domaine en 2-3 phrases."
+      price: "Sur Vinea dès XX €"
+  caption: |
+    🍇 Domaine du mois : A_COMPLETER
+
+    Présentation du domaine, du vigneron, de ce qu'on aime chez eux.
+
+    👉 Leurs vins et leurs expériences sont disponibles sur Vinea.
+  hashtags: [domainedumois, pepitesduvin]

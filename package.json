@@ -1,0 +1,31 @@
+{
+  "name": "vinea-instapost",
+  "version": "1.0.0",
+  "description": "Publication automatique des posts Vinea sur Instagram et LinkedIn",
+  "scripts": {
+    "preview": "node src/run.js preview",
+    "prepare-post": "node src/run.js prepare",
+    "publish-post": "node src/run.js publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Azeras007/instapost.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Azeras007/instapost/issues"
+  },
+  "homepage": "https://github.com/Azeras007/instapost#readme",
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "satori": "^0.33.5",
+    "satori-html": "^0.3.2",
+    "yaml": "^2.9.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

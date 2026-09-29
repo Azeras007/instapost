@@ -1,0 +1,89 @@
+name: Publier un post Vinea
+
+on:
+  schedule:
+    # Tous les jours à 16h UTC (18h à Paris l'été, 17h l'hiver).
+    # Le script ne publie que si le dernier post date d'au moins ~2 jours.
+    - cron: "0 16 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Publier maintenant, même si le dernier post date de moins de 2 jours"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    env:
+      IG_METHOD: ${{ vars.IG_METHOD || 'graph' }} # graph | instagrapi | off
+      HAS_PAT: ${{ secrets.GH_PAT != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Préparer le prochain post
+        id: prep
+        run: node src/run.js prepare
+        env:
+          FORCE: ${{ inputs.force }}
+
+      # Les images doivent être en ligne pour que l'API Instagram puisse les télécharger.
+      - name: Mettre les visuels en ligne
+        if: steps.prep.outputs.has_post == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/posts
+          git diff --cached --quiet || git commit -m "visuels : ${{ steps.prep.outputs.post_id }}"
+          git push
+          sleep 15
+
+      - name: Installer instagrapi
+        if: steps.prep.outputs.has_post == 'true' && env.IG_METHOD == 'instagrapi'
+        run: pip install instagrapi
+
+      - name: Publier
+        if: steps.prep.outputs.has_post == 'true'
+        run: node src/run.js publish
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_SESSION: ${{ secrets.IG_SESSION }}
+          IG_USERNAME: ${{ secrets.IG_USERNAME }}
+          IG_PASSWORD: ${{ secrets.IG_PASSWORD }}
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_AUTHOR_URN: ${{ secrets.LINKEDIN_AUTHOR_URN }}
+          PYTHON: python3
+
+      - name: Enregistrer l'historique
+        if: always() && steps.prep.outputs.has_post == 'true'
+        run: |
+          git add state
+          git diff --cached --quiet || git commit -m "publié : ${{ steps.prep.outputs.post_id }}"
+          git pull --rebase
+          git push
+
+      # Le token Instagram expire après 60 jours : on le prolonge automatiquement
+      # (nécessite le secret GH_PAT, un token GitHub avec le droit "Secrets: write" sur ce repo).
+      - name: Prolonger le token Instagram
+        if: steps.prep.outputs.has_post == 'true' && env.IG_METHOD == 'graph' && env.HAS_PAT == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: |
+          NEW=$(node -e "import('./src/publishers/instagram-graph.js').then(m => m.refreshInstagramToken()).then(t => process.stdout.write(t))")
+          echo "::add-mask::$NEW"
+          gh secret set IG_ACCESS_TOKEN --body "$NEW" --repo "$GITHUB_REPOSITORY"

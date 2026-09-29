@@ -1,0 +1,33 @@
+# Identité de marque utilisée sur les visuels et dans les légendes.
+# ⚠️ Tant qu'un champ contient A_COMPLETER, rien ne sera publié (sécurité).
+
+brand:
+  name: vinea
+  handle: "A_COMPLETER"        # ex: "@vinea.app" (affiché en bas des visuels simples)
+  website: "A_COMPLETER"       # ex: "vinea.fr" (bouton de la dernière slide des carrousels)
+  tagline: "Le bon vin est près de chez toi."
+
+# Palette (modifiable librement)
+colors:
+  wine: "#5A1E2E"   # bordeaux
+  cream: "#F5EFE4"  # crème
+  vine: "#4E6B3C"   # vert vigne
+  gold: "#C9A063"   # doré
+  blush: "#E6CFC2"  # rosé
+  ink: "#24151A"    # fond sombre (photos)
+
+# Ajoutés à la fin de chaque légende (après le texte du post).
+signature:
+  instagram: "🍇 Découvre les domaines près de chez toi → lien en bio"
+  linkedin: "👉 En savoir plus : A_COMPLETER"
+
+# Hashtags ajoutés à tous les posts (après ceux du post). LinkedIn n'en garde que 5.
+defaultHashtags:
+  - vinea
+  - vin
+  - consommerlocal
+  - vigneron
+  - vinfrancais
+  - circuitcourt
+  - domaineviticole
+  - oenologie
