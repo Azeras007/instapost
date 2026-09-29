@@ -36,6 +36,20 @@ Les gabarits disponibles (`cover`, `quote`, `list`, `big`, `domaine`, `cta`) et 
 
 Il y a 12 posts prêts, donc environ 24 jours de contenu. Quand la file est vide, le workflow le signale dans ses logs sans rien publier.
 
+### Générer de nouveaux posts avec une IA locale (gratuit)
+
+L'IA tourne **sur ton PC** avec [Ollama](https://ollama.com/download) : rien n'est envoyé à un service externe.
+
+```bash
+ollama pull mistral                        # une fois (~4 Go), bon niveau en français
+npm run generate                           # 3 nouveaux posts
+npm run generate -- 6 "vendanges"          # 6 posts sur un thème
+```
+
+Les posts sont ajoutés à la fin de `content/posts.yaml` en `ready: false`. Tu les relis (`npm run preview <id>`),
+tu corriges si besoin, tu passes les bons en `ready: true`, puis tu fais `git push` : GitHub les publiera dans l'ordre.
+Autre modèle : `OLLAMA_MODEL=qwen2.5:7b npm run generate`. Le prompt interdit d'inventer des noms de domaines ou des chiffres, mais relis quand même.
+
 ## 3. Brancher Instagram
 
 ### Option A : API officielle Meta (recommandée, gratuite, fiable)

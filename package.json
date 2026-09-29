@@ -5,7 +5,8 @@
   "scripts": {
     "preview": "node src/run.js preview",
     "prepare-post": "node src/run.js prepare",
-    "publish-post": "node src/run.js publish"
+    "publish-post": "node src/run.js publish",
+    "generate": "node scripts/generate.js"
   },
   "repository": {
     "type": "git",
