@@ -4,7 +4,7 @@ Attention : contraire aux CGU d'Instagram, le compte peut être bloqué/challeng
 surtout depuis les IP des serveurs GitHub. Réutiliser une session (IG_SESSION)
 créée depuis ton propre PC limite fortement le risque.
 
-Usage : python instagrapi_publish.py out/current.json
+Usage : python instagrapi_publish.py out/instagrapi.json  (photos, carrousel ou reel)
 Env   : IG_SESSION (JSON produit par scripts/ig_session.py), sinon IG_USERNAME + IG_PASSWORD
 """
 import json
@@ -33,9 +33,12 @@ def main() -> None:
         cl.set_settings(json.loads(session))
     cl.login(os.environ["IG_USERNAME"], os.environ["IG_PASSWORD"])
 
-    photos = [to_jpg(f) for f in job["files"]]
     caption = job["caption"]
-    media = cl.photo_upload(photos[0], caption) if len(photos) == 1 else cl.album_upload(photos, caption)
+    if job.get("video"):  # Reel
+        media = cl.clip_upload(Path(job["video"]), caption, thumbnail=Path(job["cover"]))
+    else:
+        photos = [to_jpg(f) for f in job["files"]]
+        media = cl.photo_upload(photos[0], caption) if len(photos) == 1 else cl.album_upload(photos, caption)
     print(json.dumps({"id": media.pk}))
 
 

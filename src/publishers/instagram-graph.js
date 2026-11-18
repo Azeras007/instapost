@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+
 // Publication via l'API officielle "Instagram API with Instagram Login" (gratuite).
 // Doc : https://developers.facebook.com/docs/instagram-platform/content-publishing
 // Les images doivent être accessibles par URL publique : on utilise les URL raw GitHub du repo.
@@ -18,9 +20,9 @@ async function call(method, endpoint, params) {
   return json;
 }
 
-// Un conteneur doit être FINISHED avant publication (surtout pour les carrousels).
-async function waitReady(containerId) {
-  for (let i = 0; i < 30; i++) {
+// Un conteneur doit être FINISHED avant publication (surtout pour les carrousels et les vidéos).
+async function waitReady(containerId, tries = 30) {
+  for (let i = 0; i < tries; i++) {
     const { status_code } = await call('GET', containerId, { fields: 'status_code' });
     if (status_code === 'FINISHED') return;
     if (status_code === 'ERROR' || status_code === 'EXPIRED') {
@@ -51,6 +53,33 @@ export async function publishInstagramGraph({ imageUrls, caption }) {
     }));
   }
   await waitReady(creationId);
+  const { id } = await call('POST', 'me/media_publish', { creation_id: creationId });
+  return { id };
+}
+
+// Reel : la vidéo est envoyée directement (upload "resumable"), sans dépendre d'une URL publique.
+// Si cet envoi échoue, on retente avec l'URL raw GitHub de la vidéo.
+// Doc : https://developers.facebook.com/docs/instagram-platform/content-publishing#reels-posts
+export async function publishInstagramReel({ file, videoUrl, coverUrl, caption }) {
+  if (!process.env.IG_ACCESS_TOKEN) throw new Error('IG_ACCESS_TOKEN manquant');
+  const base = { media_type: 'REELS', caption, share_to_feed: 'true', ...(coverUrl ? { cover_url: coverUrl } : {}) };
+  let creationId;
+  try {
+    const { id, uri } = await call('POST', 'me/media', { ...base, upload_type: 'resumable' });
+    const data = fs.readFileSync(file);
+    const res = await fetch(uri || `https://rupload.facebook.com/ig-api-upload/${process.env.IG_GRAPH_VERSION || 'v23.0'}/${id}`, {
+      method: 'POST',
+      headers: { Authorization: `OAuth ${process.env.IG_ACCESS_TOKEN}`, offset: '0', file_size: String(data.length) },
+      body: data,
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok || json.success === false) throw new Error(`upload vidéo : ${res.status} ${JSON.stringify(json)}`);
+    creationId = id;
+  } catch (e) {
+    console.log(`Upload direct impossible (${e.message}), essai avec l'URL publique de la vidéo…`);
+    ({ id: creationId } = await call('POST', 'me/media', { ...base, video_url: videoUrl }));
+  }
+  await waitReady(creationId, 60); // jusqu'à 5 min de traitement côté Instagram
   const { id } = await call('POST', 'me/media_publish', { creation_id: creationId });
   return { id };
 }

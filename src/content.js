@@ -14,7 +14,7 @@ export function loadConfig() {
 }
 
 export function loadPosts() {
-  const posts = readYaml('content/posts.yaml');
+  const posts = readYaml('content/posts.yaml').map((p) => ({ type: 'post', ...p }));
   const ids = new Set();
   for (const p of posts) {
     if (!p.id) throw new Error('Un post n\'a pas d\'id dans content/posts.yaml');
@@ -24,6 +24,21 @@ export function loadPosts() {
     if (p.slides.length > 10) throw new Error(`${p.id} : 10 slides max (limite Instagram)`);
   }
   return posts;
+}
+
+// Reels (vidéos) : content/reels.yaml
+export function loadReels() {
+  const file = path.join(ROOT, 'content', 'reels.yaml');
+  if (!fs.existsSync(file)) return [];
+  const reels = (readYaml('content/reels.yaml') || []).map((r) => ({ ...r, type: 'reel' }));
+  const ids = new Set();
+  for (const r of reels) {
+    if (!r.id) throw new Error("Un reel n'a pas d'id dans content/reels.yaml");
+    if (ids.has(r.id)) throw new Error(`id de reel en double : ${r.id}`);
+    ids.add(r.id);
+    if (!Array.isArray(r.scenes) || !r.scenes.length) throw new Error(`${r.id} : aucune scène`);
+  }
+  return reels;
 }
 
 export function loadState() {
@@ -40,6 +55,20 @@ export function saveState(state) {
 export function nextPost(posts, state) {
   const done = new Set(state.published.map((p) => p.id));
   return posts.find((p) => p.ready === true && !done.has(p.id)) || null;
+}
+
+// Prochaine publication : reels et posts répartis régulièrement jusqu'au bout.
+// On prend la file qui a, en proportion, le plus de contenu restant (à égalité : un reel).
+export function nextItem(posts, reels, state) {
+  const post = nextPost(posts, state);
+  const reel = nextPost(reels, state);
+  if (!post || !reel) return post || reel || null;
+  const done = new Set(state.published.map((p) => p.id));
+  const left = (list) => {
+    const ready = list.filter((x) => x.ready === true);
+    return ready.filter((x) => !done.has(x.id)).length / ready.length;
+  };
+  return left(reels) >= left(posts) ? reel : post;
 }
 
 // Refuse de publier un contenu qui contient encore des trous à remplir.

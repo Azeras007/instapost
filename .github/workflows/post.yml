@@ -2,13 +2,13 @@ name: Publier un post Vinea
 
 on:
   schedule:
-    # Tous les jours à 16h UTC (18h à Paris l'été, 17h l'hiver).
-    # Le script ne publie que si le dernier post date d'au moins ~2 jours.
-    - cron: "0 16 * * *"
+    # Tous les jours à 17h07 UTC (18h07 à Paris l'hiver, 19h07 l'été) : 1 publication par jour,
+    # reel et post en alternance. (GitHub peut décaler le lancement de quelques minutes.)
+    - cron: "7 17 * * *"
   workflow_dispatch:
     inputs:
       force:
-        description: "Publier maintenant, même si le dernier post date de moins de 2 jours"
+        description: "Publier maintenant, même si une publication a déjà eu lieu aujourd'hui"
         type: boolean
         default: false
 
@@ -23,6 +23,8 @@ jobs:
   post:
     runs-on: ubuntu-latest
     env:
+      # 1 publication par jour : on accepte un écart de 20 h (le cron peut être retardé)
+      MIN_HOURS_BETWEEN_POSTS: 20
       IG_METHOD: ${{ vars.IG_METHOD || 'graph' }} # graph | instagrapi | off
       HAS_PAT: ${{ secrets.GH_PAT != '' }}
     steps:
@@ -34,6 +36,10 @@ jobs:
           cache: npm
 
       - run: npm ci
+
+      # ffmpeg sert à assembler les reels (images + musique -> MP4)
+      - name: Installer ffmpeg
+        run: command -v ffmpeg || (sudo apt-get update && sudo apt-get install -y ffmpeg)
 
       - name: Préparer le prochain post
         id: prep
@@ -47,14 +53,14 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/posts
+          git add public
           git diff --cached --quiet || git commit -m "visuels : ${{ steps.prep.outputs.post_id }}"
           git push
           sleep 15
 
       - name: Installer instagrapi
         if: steps.prep.outputs.has_post == 'true' && env.IG_METHOD == 'instagrapi'
-        run: pip install instagrapi
+        run: pip install instagrapi "moviepy<2"
 
       - name: Publier
         if: steps.prep.outputs.has_post == 'true'
