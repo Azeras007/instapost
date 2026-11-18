@@ -485,7 +485,7 @@ export const SCENES = {
       const tx = depth ? depth * 18 : (1 - e) * 900 - o * 1100;
       const bgc = k % 2 ? p.fg : p.accent;
       const fgc = p.base;
-      return `<div style="display:flex;position:absolute;left:110px;top:${330 + (depth || 0) * 26}px;width:860px;height:1100px;border-radius:48px;background:${bgc};padding:70px 60px;flex-direction:column;justify-content:space-between;transform:translateX(${f2(tx)}px) rotate(${f2(rot)}deg);opacity:${depth ? 0.5 : 1};box-shadow:0 30px 60px rgba(0,0,0,0.25);">
+      return `<div style="display:flex;position:absolute;left:110px;top:${330 + (depth || 0) * 26}px;width:860px;height:1100px;border-radius:48px;background:${bgc};padding:70px 60px;flex-direction:column;justify-content:space-between;transform:translateX(${f2(tx)}px) rotate(${f2(rot)}deg);opacity:${depth ? 0.5 : 1};border-bottom:14px solid rgba(0,0,0,0.18);">
         <div style="display:flex;justify-content:space-between;align-items:center;"><div style="display:flex;${css(spec(F, 'alt'), 40, fgc)}">${esc(it.tag ?? s.tag ?? '')}</div>
         <div style="display:flex;${css(spec(F, 'display'), 54, fgc)}">${k + 1}/${n}</div></div>
         <div style="display:flex;flex-direction:column;">${title.html.replaceAll(p.fg, fgc).replaceAll(p.accent, p.accent2 === fgc ? p.fg : p.accent2)}${text ? `<div style="display:flex;margin-top:36px;">${text.html.replaceAll(p.fg, fgc)}</div>` : ''}</div></div>`;
@@ -673,7 +673,7 @@ export const SCENES = {
     const sp = spec(F, 'body');
     const { size, lines } = fit(q, sp, { maxW: 720, maxH: 200, max: 40, min: 30, lh: 1.25 });
     void lines;
-    const bar = `<div style="display:flex;align-items:center;width:900px;min-height:130px;padding:20px 40px;border-radius:70px;background:${p.fg};box-shadow:0 20px 50px rgba(0,0,0,0.2);">
+    const bar = `<div style="display:flex;align-items:center;width:900px;min-height:130px;padding:20px 40px;border-radius:70px;background:${p.fg};border-bottom:8px solid rgba(0,0,0,0.15);">
       ${svg(54, 54, '0 0 24 24', `<circle cx="10" cy="10" r="6.5" stroke="${p.base}" stroke-width="2.6" fill="none"/><path d="M15 15l5.5 5.5" stroke="${p.base}" stroke-width="2.6" stroke-linecap="round"/>`)}
       <div style="display:flex;flex:1;flex-wrap:wrap;margin-left:26px;${css(sp, size, p.base)}line-height:1.25;">${esc(q.slice(0, n))}${n < q.length || Math.floor(c.t * 2.4) % 2 ? '|' : ''}</div></div>`;
     const results = (s.results || [])
@@ -698,7 +698,7 @@ export const SCENES = {
       .map((it, i) => {
         const e = ease.back(ph(c.t, 0.8 + i * st, 0.5));
         if (e <= 0) return '';
-        return `<div style="display:flex;width:900px;padding:30px 34px;border-radius:40px;background:${p.fg};margin-bottom:24px;align-items:flex-start;transform:translateY(${f2((1 - e) * -200)}px) scale(${f2(0.85 + 0.15 * e)});opacity:${f2(clamp(e * 2))};box-shadow:0 18px 40px rgba(0,0,0,0.18);">
+        return `<div style="display:flex;width:900px;padding:30px 34px;border-radius:40px;background:${p.fg};margin-bottom:24px;align-items:flex-start;transform:translateY(${f2((1 - e) * -200)}px) scale(${f2(0.85 + 0.15 * e)});opacity:${f2(clamp(e * 2))};border-bottom:8px solid rgba(0,0,0,0.15);">
           <div style="display:flex;width:84px;height:84px;border-radius:22px;background:${p.accent};align-items:center;justify-content:center;margin-right:28px;">${grapeIcon(p.base)}</div>
           <div style="display:flex;flex-direction:column;flex:1;">
             <div style="display:flex;justify-content:space-between;"><div style="display:flex;${css(spec(F, 'bodyBold'), 26, p.base)}opacity:0.6;letter-spacing:2px;">${esc((it.app ?? 'VINEA').toUpperCase())}</div><div style="display:flex;${css(spec(F, 'body'), 24, p.base)}opacity:0.5;">${esc(it.time ?? 'maintenant')}</div></div>
