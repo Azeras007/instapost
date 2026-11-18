@@ -180,6 +180,16 @@ export function reelContext(reel, config) {
 }
 
 // Rend le Reel : outDir/reel.mp4 + outDir/cover.jpg. Options : { frames: [t...] } pour n'exporter que des images.
+export async function renderCover(reel, config, file) {
+  const ctx = reelContext(reel, config);
+  ctx.beat = 0.5;
+  const coverT = reel.cover ?? ctx.tl.scenes[0].d - 0.1;
+  const tmp = `${file}.png`;
+  fs.writeFileSync(tmp, await getPool().render(frameMarkup(reel, ctx, coverT), true));
+  spawnSync(FFMPEG, ['-y', '-loglevel', 'error', '-i', tmp, '-q:v', '3', file]);
+  fs.rmSync(tmp);
+}
+
 export async function renderReel(reel, config, outDir, { log = () => {} } = {}) {
   fs.mkdirSync(outDir, { recursive: true });
   const ctx = reelContext(reel, config);
@@ -241,7 +251,8 @@ export async function renderReel(reel, config, outDir, { log = () => {} } = {}) 
   await done;
 
   // 3. Couverture (image d'aperçu)
-  const coverT = reel.cover ?? Math.min(ctx.tl.scenes[0].d - 0.05, 2.2);
+  // Couverture : fin de la 1re scène (texte entièrement affiché), ou `cover: <secondes>` dans le YAML
+  const coverT = reel.cover ?? ctx.tl.scenes[0].d - 0.1;
   const png = await p.render(frameMarkup(reel, ctx, coverT), true);
   const coverPng = path.join(tmp, 'cover.png');
   fs.writeFileSync(coverPng, png);

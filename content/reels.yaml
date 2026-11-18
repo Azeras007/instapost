@@ -33,6 +33,7 @@
 #   pairing  : kicker, items [{a, b, note}]           orbit  : text, words, sub
 #   grid     : title, tiles [{title, text}]           flash  : words (un mot par temps de musique)
 #   photo    : image (assets/photos/...), text        cta    : title, text, button
+# Option du reel : cover (secondes) = image d'aperçu ; par défaut la fin de la 1re scène.
 # Options de scène : duration, palette (fond différent pour cette scène), transition, brand: false
 # Dans les textes, entoure un passage d'*astérisques* pour le mettre en valeur.
 
@@ -541,6 +542,7 @@
 
 - id: reel-soutenir-pas-un-don
   ready: true
+  cover: 7.3
   look: { palette: olive, font: brut, bg: stripes, transition: cut, hl: box, kicker: bar }
   music: { style: synthwave, seed: 5 }
   scenes:
@@ -721,6 +723,7 @@
 
 - id: reel-pourquoi-vinea
   ready: true
+  cover: 8.1
   look: { palette: bordeaux, font: poster, bg: flat, transition: cut, hl: color, kicker: bar, brand: bottom }
   music: { style: house, seed: 1 }
   scenes:
