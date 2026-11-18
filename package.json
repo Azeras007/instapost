@@ -1,9 +1,12 @@
 {
   "name": "vinea-instapost",
   "version": "1.0.0",
-  "description": "Publication automatique des posts Vinea sur Instagram et LinkedIn",
+  "description": "Publication automatique des posts et reels Vinea sur Instagram et LinkedIn",
   "scripts": {
     "preview": "node src/run.js preview",
+    "reels": "node src/run.js reels",
+    "reels:images": "node src/run.js stills",
+    "check": "node src/run.js check",
     "prepare-post": "node src/run.js prepare",
     "publish-post": "node src/run.js publish",
     "generate": "node scripts/generate.js"
@@ -22,6 +25,7 @@
   "homepage": "https://github.com/Azeras007/instapost#readme",
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",
+    "opentype.js": "^1.3.4",
     "satori": "^0.33.5",
     "satori-html": "^0.3.2",
     "yaml": "^2.9.1"

@@ -1,0 +1,1085 @@
+# File d'attente des REELS (vidéos 9:16 avec musique). Publiés en alternance avec les posts de posts.yaml.
+# Seuls les reels "ready: true" sont publiés, dans l'ordre du fichier, jamais deux fois.
+#
+# look : identité visuelle du reel (tout est combinable)
+#   palette    : bordeaux creme vigne nuit terracotta rose champagne encre pop olive lavande sunset mer craie kraft rubis menthe blanc
+#   font       : classic poster bold elegant hand retro editorial brut modern vintage mono
+#   bg         : flat bubbles grapes leaves stripes rays waves dots blobs grid rings confetti frame spotlight chalk sparkles checker
+#   transition : fade slide up zoom spin wipe flash cut
+#   hl         : color | box | underline   (style des *mots en valeur* dans les textes)
+#   kicker     : bar | pill | plain        (style des petits surtitres)
+#   brand      : top | bottom | none       (petit logo "vinea")
+#   progress   : true                      (barre de progression en haut)
+#
+# music : musique originale générée (libre de droits), unique par reel
+#   style : lofi house bossa ambient musette cinematic jazz chiptune folk trap synthwave funk piano reggae
+#   options : seed (change le morceau), bpm, key (C D Eb E F G A Bb), ou file: assets/music/mon-son.mp3
+#
+# scenes : enchaînement de scènes animées (durée auto, ou "duration: 5")
+#   title    : kicker, text, sub, anim (rise|words|type|zoom|slide|drop|fade), align (left|center)
+#   bigword  : kicker, word, text            count   : kicker, from, to, unit, text, sub
+#   list     : kicker, title, items, style (num|check|cross|arrow|bullet)
+#   versus   : title, left, right, rows [[gauche, droite]]
+#   glass    : text, fill (0-1), wine (rouge|blanc|rose), mark, sub
+#   quote    : text, author              myth   : myth, truth
+#   quiz     : question, options, answer (index), explain
+#   timeline : title, steps [{when, what, text}]
+#   map      : kicker, label, text       bars   : title, items [{label, value, level}], note
+#   cards    : title, items [{tag, title, text}]      steps : title, items [{title, text}]
+#   define   : word, phon, kind, def, example         split : a, b, cta
+#   marquee  : words, text               bottle : title, items [{label, text}]
+#   chat     : name, messages [{from: me|them, text}]
+#   search   : query, results [{title, text}]         notifs : clock, date, items [{title, text, time}]
+#   pairing  : kicker, items [{a, b, note}]           orbit  : text, words, sub
+#   grid     : title, tiles [{title, text}]           flash  : words (un mot par temps de musique)
+#   photo    : image (assets/photos/...), text        cta    : title, text, button
+# Options de scène : duration, palette (fond différent pour cette scène), transition, brand: false
+# Dans les textes, entoure un passage d'*astérisques* pour le mettre en valeur.
+
+- id: reel-pepite-20-minutes
+  ready: true
+  look: { palette: nuit, font: editorial, bg: rings, transition: fade, hl: color, kicker: bar }
+  music: { style: ambient }
+  scenes:
+    - type: title
+      kicker: Notre conviction
+      text: "Le meilleur vin de ta région est peut-être *à 20 minutes* de chez toi."
+      anim: words
+      duration: 3.8
+    - type: map
+      kicker: Autour de toi
+      label: "20 min"
+      text: "Des domaines que tu ne connais pas encore"
+      duration: 4.6
+    - type: title
+      text: "Des vignerons passionnés.\nSans budget pub.\nSans place en rayon."
+      anim: rise
+      duration: 3.6
+    - type: cta
+      title: "Découvre les domaines près de chez toi"
+      button: Lien en bio
+  caption: |
+    On traverse la France pour des étiquettes connues… et on passe à côté du domaine du village d'à côté 🍇
+
+    Les pépites sont souvent tout près : des vignerons passionnés, sans budget pub, qui font des vins incroyables à des prix honnêtes.
+
+    Tu connais un domaine à moins de 20 minutes de chez toi ? Dis-le en commentaire 👇
+  hashtags: [vinlocal, pepitesduvin, reelsfrance]
+
+- id: reel-temperatures-de-service
+  ready: true
+  look: { palette: mer, font: poster, bg: waves, transition: slide, hl: box, kicker: pill, progress: true }
+  music: { style: funk }
+  scenes:
+    - type: title
+      kicker: Le bon réflexe
+      text: "Ton vin est peut-être *trop chaud*."
+      anim: type
+      duration: 3
+    - type: bars
+      title: "À quelle température servir ?"
+      items:
+        - { label: Effervescents, value: "6–8 °C", level: 0.2 }
+        - { label: Blancs secs, value: "8–12 °C", level: 0.38 }
+        - { label: Rosés, value: "8–10 °C", level: 0.3 }
+        - { label: Rouges légers, value: "12–14 °C", level: 0.6 }
+        - { label: Rouges charpentés, value: "16–18 °C", level: 0.85 }
+      note: "Repères indicatifs : le vigneron reste le meilleur conseil."
+      duration: 8
+    - type: title
+      text: "Un rouge servi *trop chaud* paraît plus alcooleux."
+      anim: words
+      align: center
+      duration: 3.2
+    - type: cta
+      title: "Demande conseil au vigneron, en direct"
+      button: Enregistre ce reel
+  caption: |
+    La règle du « rouge à température ambiante » date d'une époque où les maisons étaient bien plus fraîches 🌡️
+
+    🍾 Effervescents : 6–8 °C
+    🥂 Blancs secs : 8–12 °C
+    🌸 Rosés : 8–10 °C
+    🍷 Rouges légers : 12–14 °C
+    🍷 Rouges charpentés : 16–18 °C
+
+    Astuce : 20 minutes au frigo avant de servir un rouge, ça change tout. Enregistre ce reel pour ton prochain apéro 📌
+  hashtags: [conseilvin, temperaturevin, astucevin]
+
+- id: reel-conversation-ce-soir
+  ready: true
+  look: { palette: creme, font: modern, bg: dots, transition: up, hl: underline, kicker: plain }
+  music: { style: lofi }
+  scenes:
+    - type: chat
+      name: Léa
+      status: en ligne
+      messages:
+        - { from: them, text: "On prend quel vin pour ce soir ?" }
+        - { from: me, text: "J'en ai pris un au domaine à 15 min de chez moi" }
+        - { from: them, text: "Il y a un domaine à côté de chez toi ??" }
+        - { from: me, text: "Il y en a plein. On ne les voit juste jamais en rayon" }
+        - { from: them, text: "Je veux l'adresse !!" }
+      duration: 9.5
+    - type: title
+      text: "Les meilleurs domaines n'ont pas toujours *de vitrine*."
+      anim: rise
+      duration: 3.4
+    - type: cta
+      title: "Trouve les domaines autour de toi"
+      button: Lien en bio
+  caption: |
+    Cette conversation, on l'a tous eue au moins une fois 😅
+
+    Les petits domaines n'ont ni budget pub ni place en grande surface… alors on passe à côté sans le savoir.
+
+    Identifie la personne qui ramène TOUJOURS le vin de supermarché 👇
+  hashtags: [vinlocal, aperoentreamis, humourvin]
+
+- id: reel-mythe-vin-cher
+  ready: true
+  look: { palette: pop, font: brut, bg: stripes, transition: flash, hl: box, kicker: pill }
+  music: { style: house }
+  scenes:
+    - type: myth
+      myth: "Un bon vin coûte forcément cher."
+      truth: "Une partie du prix en rayon n'est *pas dans ta bouteille*."
+      duration: 6.5
+    - type: list
+      title: "Ce que tu paies aussi en magasin"
+      style: bullet
+      items: [Le transport, La distribution, Le marketing, Les marges successives]
+      duration: 5.5
+    - type: marquee
+      words: [Direct, Local, Juste, Sans intermédiaire]
+      text: "Au domaine, tu paies *le travail du vigneron*."
+      duration: 3.6
+    - type: cta
+      title: "Achète en direct, moins cher qu'en grande surface"
+      button: Lien en bio
+  caption: |
+    Idée reçue : un bon vin, c'est forcément un vin cher 💸
+
+    En réalité, le prix d'une bouteille en magasin paie aussi le transport, la distribution, le marketing et les marges de chaque intermédiaire.
+
+    En direct du domaine, tu paies surtout le travail du vigneron. Et souvent, c'est moins cher 🍷
+
+    Tu as déjà eu une belle surprise avec une bouteille pas chère ?
+  hashtags: [ideerecue, bonplanvin, achatdirect]
+
+- id: reel-lexique-tanin
+  ready: true
+  look: { palette: kraft, font: vintage, bg: grid, transition: wipe, hl: color, kicker: bar }
+  music: { style: jazz }
+  scenes:
+    - type: define
+      kicker: Le lexique du vin · n°1
+      word: Tanin
+      kind: nom masculin
+      def: "Substance issue de la peau, des pépins et des rafles du raisin. C'est elle qui donne sa structure au vin rouge et cette sensation qui assèche la bouche."
+      example: "« Ce vin a des tanins soyeux. »"
+      duration: 8
+    - type: list
+      title: "Comment on les décrit"
+      style: arrow
+      items:
+        - { title: "Soyeux, fondus", text: "Doux, presque imperceptibles" }
+        - { title: "Fermes, serrés", text: "Bien présents, souvent dans les vins jeunes" }
+        - { title: "Rugueux, asséchants", text: "Ils accrochent la langue et les gencives" }
+      duration: 6
+    - type: cta
+      title: "Le vocabulaire, c'est mieux avec le vigneron"
+      text: "Dégustations au domaine près de chez toi"
+      button: Lien en bio
+  caption: |
+    Le lexique du vin, épisode 1 : les TANINS 🍷
+
+    Ils viennent de la peau, des pépins et des rafles du raisin. C'est pour ça qu'on les trouve surtout dans les rouges, où le jus macère avec les peaux.
+
+    Ce petit côté « qui assèche la bouche » ? C'est eux.
+
+    Quel mot du vin tu n'as jamais osé demander ? On en fait le prochain épisode 👇
+  hashtags: [lexiqueduvin, apprendrelevin, oenologie]
+
+- id: reel-quiz-carafer-blanc
+  ready: true
+  look: { palette: lavande, font: bold, bg: confetti, transition: zoom, hl: color, kicker: pill }
+  music: { style: chiptune }
+  scenes:
+    - type: title
+      kicker: Quiz
+      text: "Teste-toi en 5 secondes"
+      anim: drop
+      align: center
+      duration: 2.4
+    - type: quiz
+      question: "Faut-il carafer un vin blanc ?"
+      options: ["Jamais, c'est réservé aux rouges", "Parfois, oui", "Toujours"]
+      answer: 1
+      explain: "Certains blancs riches ou jeunes s'expriment mieux après un peu d'air."
+      duration: 8
+    - type: title
+      text: "Dans le doute ? *Demande au vigneron.*"
+      anim: words
+      align: center
+      duration: 2.8
+    - type: cta
+      title: "Des conseils en direct du domaine"
+      button: Lien en bio
+  caption: |
+    QUIZ 🧠 Faut-il carafer un vin blanc ?
+
+    Réponse : parfois, oui ! Certains blancs riches ou encore jeunes gagnent à prendre l'air quelques minutes avant d'être servis.
+
+    Tu avais trouvé ? Dis-nous ton score en commentaire 👇
+  hashtags: [quizvin, carafe, vinblanc]
+
+- id: reel-annee-de-la-vigne
+  ready: true
+  look: { palette: vigne, font: classic, bg: leaves, transition: fade, hl: color, kicker: bar }
+  music: { style: folk }
+  scenes:
+    - type: title
+      kicker: Dans les vignes
+      text: "Une bouteille, c'est *un an de travail*."
+      anim: rise
+      duration: 3
+    - type: timeline
+      title: "L'année du vigneron"
+      steps:
+        - { when: Hiver, what: La taille, text: "On choisit les bois qui porteront les raisins" }
+        - { when: Printemps, what: Le débourrement, text: "Les bourgeons s'ouvrent" }
+        - { when: Juin, what: La floraison }
+        - { when: Été, what: La véraison, text: "Les raisins changent de couleur" }
+        - { when: Sept. – oct., what: Les vendanges }
+      duration: 9
+    - type: quote
+      text: "Le vin se fait d'abord dans les vignes."
+      author: Dicton de vigneron
+      duration: 3.6
+    - type: cta
+      title: "Rencontre ceux qui le font"
+      button: Lien en bio
+  caption: |
+    Avant d'arriver dans ton verre, une bouteille, c'est une année entière dans les vignes 🌿
+
+    ✂️ Hiver : la taille
+    🌱 Printemps : le débourrement
+    🌸 Juin : la floraison
+    🍇 Été : la véraison
+    🧺 Septembre-octobre : les vendanges
+
+    La prochaine fois que tu ouvres une bouteille, pense à tout ce travail 🙏
+  hashtags: [viedevigneron, vignes, vendanges]
+
+- id: reel-lire-une-etiquette
+  ready: true
+  look: { palette: champagne, font: elegant, bg: frame, transition: slide, hl: color, kicker: plain }
+  music: { style: piano }
+  scenes:
+    - type: title
+      kicker: Guide
+      text: "Tu ne sais pas lire *une étiquette* ?"
+      anim: fade
+      duration: 2.8
+    - type: bottle
+      title: "Ce qu'il faut regarder"
+      items:
+        - { label: Appellation, text: "La zone d'où vient le vin (AOP, IGP…)" }
+        - { label: Millésime, text: "L'année de la récolte des raisins" }
+        - { label: "Mis en bouteille au domaine", text: "Le vin a été fait et embouteillé sur place" }
+        - { label: Le nom du domaine, text: "Retiens-le : c'est lui que tu vas chercher" }
+      duration: 9
+    - type: cta
+      title: "Va le chercher directement au domaine"
+      button: Lien en bio
+  caption: |
+    Lire une étiquette en 10 secondes 🔎
+
+    📍 L'appellation : d'où vient le vin
+    📅 Le millésime : l'année de la récolte
+    🏡 « Mis en bouteille au domaine / à la propriété » : le vin a été produit et embouteillé sur place
+    ✍️ Le nom du domaine : celui que tu vas pouvoir aller voir !
+
+    Enregistre pour ta prochaine cave 📌
+  hashtags: [etiquettevin, conseilvin, apprendrelevin]
+
+- id: reel-accords-fromages
+  ready: true
+  look: { palette: craie, font: hand, bg: chalk, transition: spin, hl: color, kicker: plain, brand: bottom }
+  music: { style: musette }
+  scenes:
+    - type: title
+      text: "4 accords *fromage & vin* qu'on ne présente plus"
+      anim: words
+      align: center
+      size: 150
+      duration: 3
+    - type: pairing
+      kicker: L'ardoise du jour
+      items:
+        - { a: Comté, b: Vin jaune, note: "Le duo star du Jura" }
+        - { a: Crottin de Chavignol, b: Sancerre, note: "Le chèvre et le sauvignon du même coin" }
+        - { a: Roquefort, b: Sauternes, note: "Le salé du bleu, le sucré du liquoreux" }
+        - { a: Munster, b: Gewurztraminer, note: "Un accord 100 % alsacien" }
+      duration: 11
+    - type: cta
+      title: "Et toi, ton accord préféré ?"
+      text: "Dis-le en commentaire"
+      button: Lien en bio
+  caption: |
+    L'ardoise des accords fromage & vin 🧀🍷
+
+    🧀 Comté + vin jaune
+    🐐 Crottin de Chavignol + Sancerre
+    💙 Roquefort + Sauternes
+    🧡 Munster + gewurztraminer
+
+    Le secret de beaucoup d'accords réussis : marier un fromage et un vin de la même région.
+
+    Ton accord préféré ? 👇
+  hashtags: [accordsmetsvins, fromage, aperofrancais]
+
+- id: reel-conserver-son-vin
+  ready: true
+  look: { palette: encre, font: mono, bg: sparkles, transition: cut, hl: box, kicker: bar }
+  music: { style: synthwave }
+  scenes:
+    - type: title
+      text: "Ta cave idéale,\nmême dans un appart."
+      anim: type
+      duration: 3.2
+    - type: list
+      kicker: Checklist
+      title: "Bien garder ses bouteilles"
+      style: check
+      items:
+        - { title: Couchées, text: "Le bouchon reste humide et étanche" }
+        - { title: Dans le noir, text: "La lumière abîme le vin" }
+        - { title: "Au frais, sans à-coups", text: "Autour de 12 °C, surtout stable" }
+        - { title: Sans vibrations, text: "Loin de la machine à laver" }
+        - { title: Loin des odeurs fortes }
+      duration: 8
+    - type: title
+      text: "Le pire endroit ? *Au-dessus du frigo.*"
+      anim: words
+      duration: 3
+    - type: cta
+      title: "Remplis ta cave en direct des domaines"
+      button: Lien en bio
+  caption: |
+    Pas de cave ? Pas de panique 🏠
+
+    ✅ Bouteilles couchées (pour les bouchons en liège)
+    ✅ À l'abri de la lumière
+    ✅ Au frais et surtout à température stable
+    ✅ Sans vibrations
+    ✅ Loin des odeurs fortes
+
+    Un placard dans une pièce fraîche fait très bien l'affaire. Et toi, tu ranges tes bouteilles où ? 👀
+  hashtags: [cave, conserverlevin, astucevin]
+
+- id: reel-deguster-en-4-etapes
+  ready: true
+  look: { palette: bordeaux, font: bold, bg: spotlight, transition: zoom, hl: color, kicker: bar, progress: true }
+  music: { style: cinematic }
+  scenes:
+    - type: title
+      kicker: Masterclass express
+      text: "Déguster comme un pro en *4 étapes*"
+      anim: zoom
+      duration: 3
+    - type: steps
+      title: Dégustation
+      items:
+        - { title: Regarder, text: "La couleur, la brillance, l'intensité de la robe." }
+        - { title: Sentir, text: "Verre immobile : le premier nez." }
+        - { title: Faire tourner, text: "Le vin s'aère et libère d'autres arômes." }
+        - { title: Goûter, text: "L'attaque, le milieu de bouche, puis la longueur." }
+      duration: 11
+    - type: cta
+      title: "À tester lors d'une dégustation au domaine"
+      button: Lien en bio
+  caption: |
+    Déguster, ce n'est pas réservé aux experts 🍷
+
+    1️⃣ Regarder : la couleur, la brillance
+    2️⃣ Sentir : le premier nez, verre immobile
+    3️⃣ Faire tourner : le vin s'ouvre, de nouveaux arômes arrivent
+    4️⃣ Goûter : l'attaque, le milieu de bouche, la longueur
+
+    Le meilleur endroit pour s'entraîner ? Une dégustation au domaine, avec le vigneron 😉
+  hashtags: [degustation, apprendrelevin, oenologie]
+
+- id: reel-grande-surface-vs-domaine
+  ready: true
+  look: { palette: sunset, font: modern, bg: blobs, transition: slide, hl: underline, kicker: pill }
+  music: { style: trap }
+  scenes:
+    - type: title
+      text: "Rayon du supermarché ou *domaine* ?"
+      anim: slide
+      duration: 2.8
+    - type: versus
+      title: "Le match"
+      left: Supermarché
+      right: Au domaine
+      rows:
+        - [Vigneron inconnu, Tu le rencontres]
+        - [Plusieurs intermédiaires, Achat en direct]
+        - [Pas de dégustation, Tu goûtes avant]
+        - [Conseil sur l'étiquette, Conseil du vigneron]
+      duration: 8.5
+    - type: bigword
+      word: Domaine
+      text: "Victoire par K.-O."
+      duration: 2.8
+    - type: cta
+      title: "Le domaine, sans faire 50 km"
+      button: Lien en bio
+  caption: |
+    Supermarché vs domaine : le match 🥊
+
+    Au domaine, tu rencontres celui qui fait le vin, tu goûtes avant d'acheter, tu as des conseils sur mesure… et ton argent va directement au vigneron.
+
+    Le seul problème : savoir quels domaines existent près de chez toi. C'est là qu'on intervient 🍇
+  hashtags: [circuitcourt, achatdirect, consommerlocal]
+
+- id: reel-roue-des-aromes
+  ready: true
+  look: { palette: rose, font: editorial, bg: sparkles, transition: fade, hl: color, kicker: pill }
+  music: { style: bossa }
+  scenes:
+    - type: orbit
+      kicker: Ferme les yeux
+      text: "Qu'est-ce que tu sens ?"
+      words: [Fruits rouges, Agrumes, Fleurs blanches, Vanille, Épices, Sous-bois, Fruits noirs, Miel]
+      sub: "Il n'y a pas de mauvaise réponse."
+      duration: 7
+    - type: title
+      text: "La vanille vient souvent… *du fût de chêne*."
+      anim: rise
+      duration: 3.4
+    - type: title
+      text: "Et toi, ton arôme préféré ?"
+      anim: words
+      align: center
+      duration: 2.6
+    - type: cta
+      title: "Entraîne ton nez au domaine"
+      button: Lien en bio
+  caption: |
+    Fruits rouges, agrumes, vanille, sous-bois… 🌸
+
+    Les arômes du vin viennent du cépage, du terroir, de la fermentation et de l'élevage (le fût de chêne donne par exemple des notes vanillées ou toastées).
+
+    Pas besoin d'être expert : le nez, ça s'entraîne ! Ton arôme préféré ? 👇
+  hashtags: [aromesduvin, degustation, oenologie]
+
+- id: reel-team-rouge-team-blanc
+  ready: true
+  look: { palette: rubis, font: poster, bg: checker, transition: flash, hl: box, kicker: pill }
+  music: { style: house, seed: 21 }
+  scenes:
+    - type: split
+      a: Team rouge
+      b: Team blanc
+      colors: ["#7A1630", "#F3E3B0"]
+      textA: "#FFF1E6"
+      textB: "#3A2A12"
+      cta: Vote en commentaire
+      duration: 4.8
+    - type: flash
+      words: ["Rouge ?", "Blanc ?", "Rosé ?", "Bulles ?", "Tout ?"]
+      every: 2
+      duration: 4.6
+    - type: title
+      text: "Pas besoin de choisir : *ils sont tous près de chez toi*."
+      anim: words
+      align: center
+      duration: 3.2
+    - type: cta
+      title: "Rouge, blanc, rosé, bulles : en direct des domaines"
+      button: Lien en bio
+  caption: |
+    Le débat qui divise les apéros depuis toujours 🍷🥂
+
+    Team rouge ou team blanc ? (Les team rosé et team bulles, on vous voit aussi 👀)
+
+    Vote en commentaire 👇
+  hashtags: [teamrouge, teamblanc, apero]
+
+- id: reel-experiences-au-domaine
+  ready: true
+  look: { palette: terracotta, font: retro, bg: rays, transition: slide, hl: color, kicker: pill }
+  music: { style: bossa, seed: 77 }
+  scenes:
+    - type: title
+      kicker: Expériences
+      text: "Le vin, ça se vit aussi."
+      anim: rise
+      align: center
+      duration: 2.8
+    - type: cards
+      title: Au domaine
+      items:
+        - { tag: Découvrir, title: Visite de cave, text: "Là où le vin fermente et vieillit." }
+        - { tag: Goûter, title: Dégustation avec le vigneron, text: "Les cuvées racontées par celui qui les fait." }
+        - { tag: Participer, title: Une journée de vendanges, text: "Sécateur en main, panier sur le dos." }
+        - { tag: Savourer, title: Atelier accords mets-vins, text: "Pour ne plus jamais hésiter à table." }
+      duration: 11
+    - type: cta
+      title: "Réserve ton expérience près de chez toi"
+      button: Lien en bio
+  caption: |
+    Un vin a meilleur goût quand tu as serré la main de celui qui l'a fait 🤝
+
+    Sur Vinea, il n'y a pas que des bouteilles : visites de cave, dégustations avec le vigneron, journées de vendanges, ateliers accords mets-vins…
+
+    Tu choisirais laquelle ? 1, 2, 3 ou 4 ? 👇
+  hashtags: [oenotourisme, experiencevin, vendanges]
+
+- id: reel-soutenir-pas-un-don
+  ready: true
+  look: { palette: olive, font: brut, bg: stripes, transition: cut, hl: box, kicker: bar }
+  music: { style: synthwave, seed: 5 }
+  scenes:
+    - type: flash
+      words: ["Soutenir", "un domaine", "n'est pas", "faire un don"]
+      every: 2
+      duration: 4.4
+    - type: title
+      text: "C'est *investir* dans ce que tu bois."
+      anim: slide
+      duration: 3
+    - type: list
+      title: "Ça aide à financer"
+      style: arrow
+      items: [Du nouveau matériel, Une conversion en bio, La reprise par une nouvelle génération]
+      duration: 5.5
+    - type: title
+      text: "Et toi, tu paies *ton vin moins cher*."
+      anim: words
+      duration: 3
+    - type: cta
+      title: "Soutiens les domaines près de chez toi"
+      button: Lien en bio
+  caption: |
+    Soutenir un domaine, ce n'est pas faire un don 🤝
+
+    Les petits domaines portent seuls des investissements lourds : matériel, conversion en bio, reprise par une nouvelle génération…
+
+    Avec Vinea, tu les aides à se développer, et en échange tu profites de leurs vins moins cher qu'en grande surface. Tout le monde y gagne.
+  hashtags: [soutienlocal, economielocale, vigneron]
+
+- id: reel-recherche-vin-pas-cher
+  ready: true
+  look: { palette: blanc, font: modern, bg: grid, transition: up, hl: box, kicker: bar }
+  music: { style: lofi, seed: 404 }
+  scenes:
+    - type: search
+      kicker: "Nous, chaque vendredi :"
+      query: "bon vin pas cher près de chez moi"
+      results:
+        - { title: Vinea, text: "Les domaines autour de toi, en direct du vigneron" }
+        - { title: Le rayon du supermarché, text: "Des centaines d'étiquettes… et aucun conseil" }
+      duration: 6.5
+    - type: title
+      text: "La réponse était *à côté de chez toi*."
+      anim: rise
+      duration: 3
+    - type: cta
+      title: "Le bon vin près de chez toi, enfin facile à trouver"
+      button: Lien en bio
+  caption: |
+    Tape « bon vin pas cher près de chez moi »… et tu tombes sur le rayon du supermarché 🙃
+
+    Pourtant, il y a sûrement des domaines à quelques kilomètres qui vendent des vins excellents, en direct, à prix doux.
+
+    Vinea les rassemble pour toi. Lien en bio 🍇
+  hashtags: [vinpascher, vinlocal, bonplan]
+
+- id: reel-bulles-champagne-cremant
+  ready: true
+  look: { palette: encre, font: elegant, bg: bubbles, transition: fade, hl: color, kicker: plain }
+  music: { style: jazz, seed: 1789 }
+  scenes:
+    - type: title
+      kicker: Ça pétille
+      text: "Champagne, crémant, pét'nat : *quelle différence ?*"
+      anim: rise
+      duration: 3.4
+    - type: cards
+      items:
+        - { tag: Champagne, title: "Uniquement en Champagne", text: "Méthode traditionnelle : la seconde fermentation se fait en bouteille." }
+        - { tag: Crémant, title: "La même méthode, ailleurs", text: "Alsace, Loire, Bourgogne, Jura, Limoux… souvent bien plus doux en prix." }
+        - { tag: "Pét'nat", title: "Méthode ancestrale", text: "Une seule fermentation, qui se termine en bouteille." }
+      duration: 10
+    - type: title
+      text: "Le crémant : *le bon plan* de tes fêtes."
+      anim: words
+      align: center
+      duration: 2.8
+    - type: cta
+      title: "Des bulles en direct des domaines"
+      button: Lien en bio
+  caption: |
+    Toutes les bulles ne se valent pas… mais elles se valent souvent plus qu'on ne croit 🥂
+
+    🍾 Champagne : produit uniquement en Champagne, méthode traditionnelle (2e fermentation en bouteille)
+    ✨ Crémant : la même méthode, dans d'autres régions (Alsace, Loire, Bourgogne, Jura, Limoux…)
+    🫧 Pét'nat : méthode ancestrale, une seule fermentation qui se finit en bouteille
+
+    Ta bulle préférée ? 👇
+  hashtags: [cremant, champagne, petnat, bulles]
+
+- id: reel-labels-bio-hve-demeter
+  ready: true
+  look: { palette: menthe, font: classic, bg: dots, transition: fade, hl: underline, kicker: pill }
+  music: { style: ambient, seed: 33 }
+  scenes:
+    - type: title
+      kicker: Les logos sur la bouteille
+      text: "AB, HVE, Demeter… *c'est quoi la différence ?*"
+      anim: words
+      duration: 3.4
+    - type: grid
+      title: "On t'explique"
+      tiles:
+        - { title: AB, text: "Agriculture biologique : pas de pesticides ni d'engrais chimiques de synthèse." }
+        - { title: HVE, text: "Haute Valeur Environnementale : une certification de l'exploitation, pas du bio." }
+        - { title: Demeter, text: "La biodynamie certifiée : du bio, avec des pratiques en plus." }
+        - { title: Sans logo ?, text: "Certains domaines travaillent bien sans être certifiés : demande-leur !" }
+      duration: 9
+    - type: cta
+      title: "Pose la question directement au vigneron"
+      button: Lien en bio
+  caption: |
+    Les logos sur les bouteilles, on t'explique 🌱
+
+    🟢 AB : agriculture biologique, sans pesticides ni engrais chimiques de synthèse
+    🔵 HVE : Haute Valeur Environnementale, une certification environnementale de l'exploitation (ce n'est pas du bio)
+    🌙 Demeter : biodynamie certifiée
+
+    Et beaucoup de petits domaines travaillent proprement sans avoir de logo. Le plus simple : leur demander !
+  hashtags: [vinbio, biodynamie, vinnature]
+
+- id: reel-larmes-du-vin
+  ready: true
+  look: { palette: nuit, font: vintage, bg: spotlight, transition: zoom, hl: color, kicker: bar }
+  music: { style: cinematic, seed: 9 }
+  scenes:
+    - type: glass
+      text: "Ces traces sur ton verre…"
+      fill: 0.3
+      wine: rouge
+      sub: "On les appelle les larmes, ou les jambes du vin."
+      duration: 5
+    - type: myth
+      myth: "Des belles larmes, c'est un vin de qualité."
+      truth: "Elles montrent surtout *l'alcool* (et le sucre). Pas la qualité."
+      duration: 7
+    - type: cta
+      title: "La qualité, ça se goûte au domaine"
+      button: Lien en bio
+  caption: |
+    Les « larmes » ou « jambes » du vin, ces gouttes qui coulent le long du verre 🍷
+
+    Idée reçue : elles indiqueraient un grand vin.
+    Réalité : elles dépendent surtout du taux d'alcool (et du sucre). Rien à voir avec la qualité !
+
+    Tu y croyais ? Sois honnête 👇
+  hashtags: [ideerecue, larmesduvin, degustation]
+
+- id: reel-notifications-vendredi
+  ready: true
+  look: { palette: mer, font: modern, bg: rings, transition: up, hl: color, kicker: plain }
+  music: { style: synthwave, seed: 2024 }
+  scenes:
+    - type: notifs
+      clock: "18:42"
+      date: "vendredi"
+      items:
+        - { title: Nouvelle cuvée dispo, text: "Un domaine à 12 km de chez toi", time: "18:30" }
+        - { title: Dégustation samedi 17h, text: "Avec le vigneron, au domaine", time: "18:35" }
+        - { title: Ta commande est prête, text: "À retirer directement au domaine", time: "18:41" }
+      duration: 7
+    - type: title
+      text: "Le genre de notif qui *fait plaisir* un vendredi soir."
+      anim: rise
+      duration: 3.2
+    - type: cta
+      title: "Les domaines près de chez toi, dans ta poche"
+      button: Lien en bio
+  caption: |
+    Les seules notifications qu'on a vraiment envie de recevoir le vendredi à 18h42 📲🍷
+
+    Nouvelles cuvées, dégustations, expériences au domaine… tout ce qui se passe dans les vignes autour de chez toi.
+
+    Tu fais quoi ce week-end ? 👇
+  hashtags: [weekend, aperodevendredi, vinlocal]
+
+- id: reel-pourquoi-vinea
+  ready: true
+  look: { palette: bordeaux, font: poster, bg: flat, transition: cut, hl: color, kicker: bar, brand: bottom }
+  music: { style: house, seed: 1 }
+  scenes:
+    - type: flash
+      words: ["Passionnés.", "Talentueux.", "Sans budget pub.", "Sans rayon.", "Invisibles."]
+      every: 2
+      duration: 5
+    - type: title
+      text: "Des milliers de vignerons *qu'on ne voit jamais*."
+      anim: words
+      duration: 3.2
+    - type: quote
+      text: "Notre mission : te les faire découvrir, et te permettre de les soutenir."
+      role: display
+      anim: rise
+      duration: 4
+    - type: cta
+      title: "Le bon vin est près de chez toi"
+      button: Lien en bio
+  caption: |
+    Pourquoi Vinea existe ? 🍇
+
+    Parce que des vignerons passionnés font des vins incroyables… sans budget pub, sans place en rayon, et donc sans que personne ne les connaisse.
+
+    Notre mission : te les faire découvrir, te permettre d'acheter en direct, de vivre des expériences au domaine et de les soutenir.
+
+    Bienvenue chez toi 🍷
+  hashtags: [vinea, startup, vinlocal]
+
+- id: reel-3-erreurs
+  ready: true
+  look: { palette: terracotta, font: bold, bg: dots, transition: wipe, hl: box, kicker: pill, progress: true }
+  music: { style: funk, seed: 3 }
+  scenes:
+    - type: title
+      kicker: Stop
+      text: "3 erreurs qui *gâchent* ton vin"
+      anim: drop
+      duration: 2.8
+    - type: list
+      style: cross
+      items:
+        - { title: "Servir le rouge trop chaud", text: "Il paraît lourd et alcooleux." }
+        - { title: "Remplir le verre à ras bord", text: "Impossible de le faire tourner et de le sentir." }
+        - { title: "Le stocker debout près du four", text: "Chaleur et lumière : ses deux pires ennemis." }
+      duration: 7.5
+    - type: title
+      text: "Tu en fais combien ? *Sois honnête.*"
+      anim: words
+      align: center
+      duration: 2.6
+    - type: cta
+      title: "Des bons vins méritent d'être bien servis"
+      button: Lien en bio
+  caption: |
+    3 erreurs qu'on fait (presque) tous 🙈
+
+    ❌ Servir le rouge trop chaud
+    ❌ Remplir le verre à ras bord
+    ❌ Stocker les bouteilles debout près du four
+
+    Tu en fais combien ? Réponds avec un chiffre 👇
+  hashtags: [erreursvin, astucevin, conseilvin]
+
+- id: reel-lexique-millesime
+  ready: true
+  look: { palette: lavande, font: editorial, bg: frame, transition: fade, hl: underline, kicker: bar }
+  music: { style: piano, seed: 2 }
+  scenes:
+    - type: define
+      kicker: Le lexique du vin · n°2
+      word: Millésime
+      kind: nom masculin
+      def: "L'année de la récolte des raisins qui ont servi à faire le vin. Pas l'année de la mise en bouteille !"
+      example: "« Un millésime solaire donne souvent des vins plus mûrs. »"
+      duration: 7.5
+    - type: title
+      text: "Chaque année, *une météo différente*. Donc un vin différent."
+      anim: rise
+      duration: 3.6
+    - type: cta
+      title: "Demande au vigneron comment était son année"
+      button: Lien en bio
+  caption: |
+    Le lexique du vin, épisode 2 : le MILLÉSIME 📅
+
+    C'est l'année de la récolte des raisins… et pas l'année de mise en bouteille.
+
+    Gel, soleil, pluie : chaque année est différente, et c'est pour ça que le même vin change d'un millésime à l'autre. Le meilleur pour te raconter son année ? Le vigneron lui-même.
+  hashtags: [lexiqueduvin, millesime, apprendrelevin]
+
+- id: reel-un-cepage-une-region
+  ready: true
+  look: { palette: olive, font: classic, bg: grapes, transition: zoom, hl: color, kicker: bar }
+  music: { style: folk, seed: 12 }
+  scenes:
+    - type: title
+      kicker: Petite géographie
+      text: "Un cépage, *une région*"
+      anim: rise
+      duration: 2.6
+    - type: grid
+      title: "Les grands classiques"
+      tiles:
+        - { title: Pinot noir, text: Bourgogne }
+        - { title: Chenin, text: "Loire (Vouvray, Anjou…)" }
+        - { title: Syrah, text: Rhône nord }
+        - { title: Grenache, text: Rhône sud }
+        - { title: Riesling, text: Alsace }
+        - { title: Cabernet franc, text: "Loire (Chinon, Saumur…)" }
+      duration: 9
+    - type: title
+      text: "Et chez toi, *quel cépage pousse* ?"
+      anim: words
+      duration: 2.8
+    - type: cta
+      title: "Explore les domaines de ta région"
+      button: Lien en bio
+  caption: |
+    Un cépage, une région 🗺️
+
+    🍒 Pinot noir : Bourgogne
+    🍐 Chenin : Loire
+    🫐 Syrah : Rhône nord
+    🍓 Grenache : Rhône sud
+    🍋 Riesling : Alsace
+    🌿 Cabernet franc : Loire
+
+    (Évidemment, chaque cépage pousse aussi ailleurs !) Quel est le cépage star de ta région ? 👇
+  hashtags: [cepages, regionsviticoles, apprendrelevin]
+
+- id: reel-ton-domaine-prefere
+  ready: true
+  look: { palette: menthe, font: retro, bg: confetti, transition: spin, hl: color, kicker: pill }
+  music: { style: chiptune, seed: 88 }
+  scenes:
+    - type: bigword
+      kicker: Question du jour
+      word: "?"
+      text: "On a besoin de toi."
+      duration: 2.6
+    - type: title
+      text: "Quel est *LE domaine* que tu conseilles autour de chez toi ?"
+      anim: words
+      align: center
+      duration: 4
+    - type: list
+      title: "Dis-nous en commentaire"
+      style: num
+      items: [Le nom du domaine, Le village, La cuvée à goûter absolument]
+      duration: 5
+    - type: cta
+      title: "On partage les meilleures pépites"
+      button: Abonne-toi
+  caption: |
+    QUESTION DU JOUR 🙋
+
+    Quel est LE domaine que tu recommandes autour de chez toi ?
+
+    Donne-nous en commentaire :
+    1. le nom du domaine
+    2. le village
+    3. la cuvée à goûter absolument
+
+    On partagera les meilleures pépites en story 🍇
+  hashtags: [pepitesduvin, vinlocal, communaute]
+
+- id: reel-bouteille-ouverte
+  ready: true
+  look: { palette: blanc, font: poster, bg: waves, transition: slide, hl: box, kicker: pill }
+  music: { style: reggae }
+  scenes:
+    - type: title
+      kicker: Lendemain d'apéro
+      text: "Une bouteille ouverte, *ça tient combien de temps ?*"
+      anim: type
+      duration: 3.6
+    - type: bars
+      title: "Rebouchée, au frais"
+      items:
+        - { label: Effervescents, value: "1 à 3 jours", level: 0.3 }
+        - { label: Blancs et rosés, value: "3 à 5 jours", level: 0.6 }
+        - { label: Rouges, value: "3 à 5 jours", level: 0.62 }
+      note: "Repères indicatifs : ça dépend beaucoup du vin."
+      duration: 7
+    - type: title
+      text: "Astuce : *le frigo*, même pour le rouge."
+      anim: words
+      duration: 2.8
+    - type: cta
+      title: "Et si tu ouvrais une nouvelle pépite ?"
+      button: Lien en bio
+  caption: |
+    La question qu'on se pose tous le lendemain d'un apéro 🍷
+
+    Une fois rebouchée et mise au frais :
+    🫧 Effervescents : 1 à 3 jours
+    🥂 Blancs et rosés : 3 à 5 jours
+    🍷 Rouges : 3 à 5 jours
+
+    L'astuce : le frigo ralentit l'oxydation, même pour le rouge (sors-le juste un peu avant de le servir).
+  hashtags: [astucevin, antigaspi, conseilvin]
+
+- id: reel-pov-domaine-a-cote
+  ready: true
+  look: { palette: rose, font: bold, bg: blobs, transition: zoom, hl: box, kicker: pill }
+  music: { style: lofi, seed: 7 }
+  scenes:
+    - type: title
+      kicker: POV
+      text: "Tu découvres que le domaine *à 10 minutes de chez toi* fait un vin incroyable."
+      anim: type
+      duration: 4.6
+    - type: bigword
+      word: Depuis
+      text: "…tout ce temps ?"
+      duration: 2.4
+    - type: flash
+      words: ["Moins cher.", "Plus proche.", "Meilleur."]
+      every: 2
+      duration: 3.4
+    - type: cta
+      title: "Découvre ce qui se cache près de chez toi"
+      button: Lien en bio
+  caption: |
+    POV : le meilleur vin que tu aies bu cette année était produit… à 10 minutes de chez toi 🤯
+
+    Ça arrive bien plus souvent qu'on ne le croit. Les domaines près de chez toi n'attendent que toi.
+
+    Tag la personne qui doit voir ça 👇
+  hashtags: [pov, vinlocal, pepitesduvin]
+
+- id: reel-checklist-visite-domaine
+  ready: true
+  look: { palette: creme, font: hand, bg: leaves, transition: wipe, hl: underline, kicker: bar }
+  music: { style: folk, seed: 404 }
+  scenes:
+    - type: title
+      kicker: Première fois ?
+      text: "Ta première visite au domaine : *la checklist*"
+      anim: words
+      size: 150
+      duration: 3
+    - type: list
+      style: check
+      items:
+        - { title: "Appeler ou réserver avant", text: "Le vigneron est souvent dans les vignes !" }
+        - { title: "Prévoir qui conduit", text: "Ou utiliser le crachoir, c'est normal." }
+        - { title: "Poser toutes tes questions", text: "Personne ne parle mieux de son vin." }
+        - { title: "Repartir avec quelques bouteilles", text: "Au prix du domaine." }
+      duration: 8
+    - type: cta
+      title: "Trouve un domaine à visiter ce week-end"
+      button: Lien en bio
+  caption: |
+    Tu n'as jamais osé pousser la porte d'un domaine ? Voici ta checklist 📝
+
+    ✅ Appeler ou réserver avant (le vigneron est souvent dans les vignes)
+    ✅ Prévoir qui conduit, ou utiliser le crachoir sans complexe
+    ✅ Poser toutes tes questions : les vignerons adorent ça
+    ✅ Repartir avec quelques bouteilles, au prix du domaine
+
+    Enregistre-le pour ta prochaine sortie 📌
+  hashtags: [oenotourisme, visitedomaine, weekend]
+
+- id: reel-remplir-son-verre
+  ready: true
+  look: { palette: rubis, font: elegant, bg: sparkles, transition: fade, hl: color, kicker: plain }
+  music: { style: ambient, seed: 61 }
+  scenes:
+    - type: glass
+      text: "Jusqu'où remplir ton verre ?"
+      fill: 0.33
+      wine: "#5C0716"
+      mark: "un tiers"
+      sub: "Assez de place pour faire tourner le vin et sentir ses arômes."
+      duration: 6
+    - type: title
+      text: "Plein à ras bord ? *Ton nez ne sent plus rien.*"
+      anim: rise
+      duration: 3.2
+    - type: cta
+      title: "Sers bien, bois mieux"
+      text: "Les domaines près de chez toi"
+      button: Lien en bio
+  caption: |
+    La règle d'or du service : un tiers du verre 🍷
+
+    Pourquoi ? Pour pouvoir faire tourner le vin, l'aérer et laisser ses arômes se concentrer dans le haut du verre.
+
+    Team verre à moitié plein ou team un tiers ? 👇
+  hashtags: [servicevin, astucevin, artdevivre]
+
+- id: reel-ordre-des-vins
+  ready: true
+  look: { palette: kraft, font: brut, bg: checker, transition: slide, hl: box, kicker: pill }
+  music: { style: jazz, seed: 42 }
+  scenes:
+    - type: title
+      kicker: Repas de famille
+      text: "Dans quel ordre *servir les vins* ?"
+      anim: rise
+      duration: 3
+    - type: list
+      style: arrow
+      items:
+        - { title: "Le blanc avant le rouge" }
+        - { title: "Le léger avant le puissant" }
+        - { title: "Le sec avant le doux" }
+        - { title: "Le jeune avant le vieux" }
+      duration: 6.5
+    - type: title
+      text: "L'idée : ne jamais *écraser* le vin suivant."
+      anim: words
+      duration: 3
+    - type: cta
+      title: "Compose ton repas avec les vins de ta région"
+      button: Lien en bio
+  caption: |
+    Le repas de famille approche ? Voici les 4 règles pour l'ordre des vins 🍽️
+
+    ➡️ Le blanc avant le rouge
+    ➡️ Le léger avant le puissant
+    ➡️ Le sec avant le doux
+    ➡️ Le jeune avant le vieux
+
+    Le principe : chaque vin ne doit pas écraser le suivant. Enregistre pour les fêtes 📌
+  hashtags: [accordsmetsvins, repasdefamille, conseilvin]
+
+- id: reel-manifeste-circuit-court
+  ready: true
+  look: { palette: vigne, font: vintage, bg: grapes, transition: wipe, hl: color, kicker: plain, progress: true }
+  music: { style: cinematic, seed: 100 }
+  scenes:
+    - type: marquee
+      words: [Local, Direct, Juste, Passion, Terroir]
+      text: "Le vin, *en circuit court*."
+      duration: 3.6
+    - type: list
+      title: "Acheter au domaine, c'est"
+      style: num
+      items:
+        - { title: Un prix plus juste, text: "Moins d'intermédiaires, moins de marges empilées." }
+        - { title: Un vigneron mieux payé, text: "Ton argent va à celui qui a fait le vin." }
+        - { title: Une transparence totale, text: "Qui, où, comment : tu sais ce que tu bois." }
+      duration: 7
+    - type: quote
+      text: "Le bon vin est près de chez toi."
+      role: display
+      duration: 3
+    - type: cta
+      title: "Rejoins le mouvement"
+      button: Lien en bio
+  caption: |
+    Acheter en direct, c'est payer le vin… pas le trajet, le stockage et les marges successives 🍇
+
+    ✔️ Un prix plus juste pour toi
+    ✔️ Un vigneron mieux payé
+    ✔️ Une transparence totale
+
+    C'est exactement ce que Vinea rend simple : les domaines près de chez toi, au bout de ton doigt.
+  hashtags: [circuitcourt, consommerlocal, achatdirect]

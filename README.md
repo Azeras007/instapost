@@ -1,6 +1,6 @@
-# Vinea · posts automatiques Instagram & LinkedIn
+# Vinea · posts et reels automatiques Instagram & LinkedIn
 
-Publie automatiquement **un post tous les 2 jours** (visuel + légende + hashtags) sur Instagram et LinkedIn.
+Publie automatiquement **une publication tous les 2 jours** sur Instagram et LinkedIn, en alternant **posts** (visuels + légende) et **reels** (vidéos animées avec musique, voir § 2 bis).
 100 % gratuit : GitHub Actions (gratuit sur un repo public) + génération des visuels en code (pas de Canva, pas d'IA payante).
 
 ```
@@ -49,6 +49,29 @@ npm run generate -- 6 "vendanges"          # 6 posts sur un thème
 Les posts sont ajoutés à la fin de `content/posts.yaml` en `ready: false`. Tu les relis (`npm run preview <id>`),
 tu corriges si besoin, tu passes les bons en `ready: true`, puis tu fais `git push` : GitHub les publiera dans l'ordre.
 Autre modèle : `OLLAMA_MODEL=qwen2.5:7b npm run generate`. Le prompt interdit d'inventer des noms de domaines ou des chiffres, mais relis quand même.
+
+## 2 bis. Les reels (vidéos avec musique)
+
+`content/reels.yaml` contient **32 reels prêts**, tous différents : formats (quiz, conversation façon SMS, mythe/réalité,
+frise, carte, verre qui se remplit, étiquette commentée, notifications, recherche, cartes qui défilent, mots au rythme de la musique…),
+18 palettes, 11 duos de polices, 17 fonds animés, 8 transitions, et 14 styles musicaux.
+
+- **Vidéo** : 1080×1920 (9:16), 30 images/s, H.264 + AAC, 12 à 22 s. Générée en code (satori + ffmpeg), rien à installer à part ffmpeg.
+- **Musique** : composée par le programme à chaque rendu (lofi, house, bossa, musette, jazz, synthwave…), donc **100 % libre de droits**,
+  et différente pour chaque reel (la graine `seed` change le morceau). Tu peux aussi mettre ton propre fichier : `music: { file: assets/music/mon-son.mp3 }`.
+  ⚠️ Les musiques de la bibliothèque Instagram ne sont pas accessibles par l'API : la musique est intégrée directement dans la vidéo.
+- **Publication** : en alternance avec les posts (un reel, un post, un reel…). Instagram uniquement (les reels sont ignorés sur LinkedIn).
+
+```bash
+npm run check                 # vérifie tous les reels (scènes, polices, caractères affichables)
+npm run reels:images          # images clés de chaque reel -> out/preview/reels/<id>/images (rapide)
+npm run reels                 # toutes les vidéos -> out/preview/reels/<id>/reel.mp4 + cover.jpg + legende.txt
+npm run reels -- quiz         # seulement les reels dont l'id contient "quiz"
+```
+
+Pour en créer un nouveau, copie un bloc de `content/reels.yaml` et change le `look`, la `music` et les `scenes` :
+la liste complète des scènes et options est en haut du fichier. Mets un passage entre `*astérisques*` pour le mettre en valeur.
+Pas d'emoji dans les textes affichés (les polices ne les ont pas) : garde-les pour la légende, `npm run check` te le signale.
 
 ## 3. Brancher Instagram
 
@@ -105,5 +128,6 @@ Un réseau sans secret est simplement ignoré.
 ## Réglages
 
 - **Fréquence** : `MIN_HOURS_BETWEEN_POSTS` (44 h par défaut) dans `src/run.js` ; heure de passage : le `cron` dans `.github/workflows/post.yml` (en UTC).
-- **Republier un post** : retire son entrée de `state/published.json`.
+- **Republier un post ou un reel** : retire son entrée de `state/published.json`.
+- **Ordre** : les reels et les posts alternent ; pour ne publier que des posts (ou que des reels), passe les autres en `ready: false`.
 - Si un réseau échoue, le workflow passe en rouge (GitHub t'envoie un e-mail) et le détail de l'erreur est dans les logs.

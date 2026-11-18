@@ -14,7 +14,7 @@ export function loadConfig() {
 }
 
 export function loadPosts() {
-  const posts = readYaml('content/posts.yaml');
+  const posts = readYaml('content/posts.yaml').map((p) => ({ type: 'post', ...p }));
   const ids = new Set();
   for (const p of posts) {
     if (!p.id) throw new Error('Un post n\'a pas d\'id dans content/posts.yaml');
@@ -24,6 +24,21 @@ export function loadPosts() {
     if (p.slides.length > 10) throw new Error(`${p.id} : 10 slides max (limite Instagram)`);
   }
   return posts;
+}
+
+// Reels (vidéos) : content/reels.yaml
+export function loadReels() {
+  const file = path.join(ROOT, 'content', 'reels.yaml');
+  if (!fs.existsSync(file)) return [];
+  const reels = (readYaml('content/reels.yaml') || []).map((r) => ({ ...r, type: 'reel' }));
+  const ids = new Set();
+  for (const r of reels) {
+    if (!r.id) throw new Error("Un reel n'a pas d'id dans content/reels.yaml");
+    if (ids.has(r.id)) throw new Error(`id de reel en double : ${r.id}`);
+    ids.add(r.id);
+    if (!Array.isArray(r.scenes) || !r.scenes.length) throw new Error(`${r.id} : aucune scène`);
+  }
+  return reels;
 }
 
 export function loadState() {
@@ -40,6 +55,15 @@ export function saveState(state) {
 export function nextPost(posts, state) {
   const done = new Set(state.published.map((p) => p.id));
   return posts.find((p) => p.ready === true && !done.has(p.id)) || null;
+}
+
+// Prochaine publication : on alterne reel / post (un reel d'abord), et on continue avec
+// ce qui reste quand l'une des deux files est vide.
+export function nextItem(posts, reels, state) {
+  const post = nextPost(posts, state);
+  const reel = nextPost(reels, state);
+  if (post && reel) return state.published.at(-1)?.type === 'reel' ? post : reel;
+  return post || reel || null;
 }
 
 // Refuse de publier un contenu qui contient encore des trous à remplir.
