@@ -57,13 +57,18 @@ export function nextPost(posts, state) {
   return posts.find((p) => p.ready === true && !done.has(p.id)) || null;
 }
 
-// Prochaine publication : on alterne reel / post (un reel d'abord), et on continue avec
-// ce qui reste quand l'une des deux files est vide.
+// Prochaine publication : reels et posts répartis régulièrement jusqu'au bout.
+// On prend la file qui a, en proportion, le plus de contenu restant (à égalité : un reel).
 export function nextItem(posts, reels, state) {
   const post = nextPost(posts, state);
   const reel = nextPost(reels, state);
-  if (post && reel) return state.published.at(-1)?.type === 'reel' ? post : reel;
-  return post || reel || null;
+  if (!post || !reel) return post || reel || null;
+  const done = new Set(state.published.map((p) => p.id));
+  const left = (list) => {
+    const ready = list.filter((x) => x.ready === true);
+    return ready.filter((x) => !done.has(x.id)).length / ready.length;
+  };
+  return left(reels) >= left(posts) ? reel : post;
 }
 
 // Refuse de publier un contenu qui contient encore des trous à remplir.

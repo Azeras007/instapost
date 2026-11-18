@@ -2,7 +2,8 @@
 //   node src/run.js preview [id]        -> rend tous les posts (ou un seul) dans out/preview pour relecture
 //   node src/run.js reels [id]          -> rend les reels (MP4 + couverture + légende) dans out/preview/reels
 //   node src/run.js stills [id]         -> images clés des reels (relecture rapide, sans vidéo)
-//   node src/run.js check               -> vérifie posts + reels (scènes, polices, caractères affichables)
+//   node src/run.js check               -> vérifie posts + reels (scènes, polices, caractères, légendes)
+//   node src/run.js planning            -> calendrier prévu des publications
 //   node src/run.js prepare             -> choisit la prochaine publication, rend les fichiers dans public/
 //   node src/run.js publish             -> publie sur Instagram / LinkedIn et met à jour state/
 import fs from 'node:fs';
@@ -66,12 +67,48 @@ async function stills(onlyId) {
 }
 
 function check() {
+  const config = loadConfig();
   const posts = loadPosts();
   const reels = loadReels();
   const problems = checkReels(reels);
+  // Tout ce qui est "ready" doit être publiable tel quel
+  for (const item of [...posts, ...reels].filter((x) => x.ready === true)) {
+    try {
+      assertComplete(config.brand, 'content/config.yaml (brand)');
+      assertComplete(item, item.id);
+      const ig = captionFor('instagram', item, config);
+      assertComplete(ig, `légende de ${item.id}`);
+      if (ig.length > 2200) throw new Error(`${item.id} : légende Instagram trop longue (${ig.length} > 2200)`);
+      if ((ig.match(/#/g) || []).length > 30) throw new Error(`${item.id} : plus de 30 hashtags`);
+    } catch (e) {
+      problems.push(e.message);
+    }
+  }
   for (const p of problems) console.error(`❌ ${p}`);
   console.log(`${posts.length} posts, ${reels.length} reels (${reels.filter((r) => r.ready).length} prêts) : ${problems.length ? `${problems.length} problème(s)` : 'tout est bon ✅'}`);
   if (problems.length) process.exitCode = 1;
+}
+
+// Calendrier prévu : 1 publication par jour (vers 18h, heure de Paris), reel et post en alternance.
+function planning() {
+  const state = structuredClone(loadState());
+  const posts = loadPosts();
+  const reels = loadReels();
+  const hours = Number(process.env.MIN_HOURS_BETWEEN_POSTS ?? 20);
+  const step = hours <= 24 ? 1 : Math.ceil(hours / 24);
+  const day = new Date();
+  if (state.lastPublishedAt) {
+    const last = new Date(state.lastPublishedAt);
+    day.setTime(Math.max(day.getTime(), last.getTime() + step * 864e5 - 4 * 36e5));
+  }
+  const fmt = new Intl.DateTimeFormat('fr-FR', { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Europe/Paris' });
+  let n = 0;
+  for (let item; (item = nextItem(posts, reels, state)); n++) {
+    console.log(`${fmt.format(day).padEnd(20)} ${item.type === 'reel' ? '🎬 reel' : '🖼️  post'}  ${item.id}`);
+    state.published.push({ id: item.id, type: item.type });
+    day.setDate(day.getDate() + step);
+  }
+  console.log(`\n${n} publications programmées (ou plus si tu ajoutes du contenu "ready: true").`);
 }
 
 async function prepare() {
@@ -208,9 +245,9 @@ async function publish() {
 }
 
 const [cmd, arg] = process.argv.slice(2);
-const commands = { preview: () => preview(arg), reels: () => previewReels(arg), stills: () => stills(arg), check, prepare, publish };
+const commands = { preview: () => preview(arg), reels: () => previewReels(arg), stills: () => stills(arg), check, planning, prepare, publish };
 if (!commands[cmd]) {
-  console.error('Usage : node src/run.js <preview [id] | reels [id] | stills [id] | check | prepare | publish>');
+  console.error('Usage : node src/run.js <preview [id] | reels [id] | stills [id] | check | planning | prepare | publish>');
   process.exit(1);
 }
 await commands[cmd]();

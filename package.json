@@ -9,7 +9,8 @@
     "check": "node src/run.js check",
     "prepare-post": "node src/run.js prepare",
     "publish-post": "node src/run.js publish",
-    "generate": "node scripts/generate.js"
+    "generate": "node scripts/generate.js",
+    "planning": "node src/run.js planning"
   },
   "repository": {
     "type": "git",

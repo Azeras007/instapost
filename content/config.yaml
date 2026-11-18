@@ -3,8 +3,8 @@
 
 brand:
   name: vinea
-  handle: "A_COMPLETER"        # ex: "@vinea.app" (affiché en bas des visuels simples)
-  website: "A_COMPLETER"       # ex: "vinea.fr" (bouton de la dernière slide des carrousels)
+  handle: "@vinea.wine"        # ex: "@vinea.app" (affiché en bas des visuels simples)
+  website: "vinea.wine"        # ex: "vinea.fr" (bouton de la dernière slide des carrousels)
   tagline: "Le bon vin est près de chez toi."
 
 # Palette (modifiable librement)
@@ -19,7 +19,7 @@ colors:
 # Ajoutés à la fin de chaque légende (après le texte du post).
 signature:
   instagram: "🍇 Découvre les domaines près de chez toi → lien en bio"
-  linkedin: "👉 En savoir plus : A_COMPLETER"
+  linkedin: "👉 En savoir plus : vinea.wine"
 
 # Hashtags ajoutés à tous les posts (après ceux du post). LinkedIn n'en garde que 5.
 defaultHashtags:

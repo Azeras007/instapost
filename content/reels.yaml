@@ -635,6 +635,42 @@
     Ta bulle préférée ? 👇
   hashtags: [cremant, champagne, petnat, bulles]
 
+- id: reel-ordre-des-vins
+  ready: true
+  look: { palette: kraft, font: brut, bg: checker, transition: slide, hl: box, kicker: pill }
+  music: { style: jazz, seed: 42 }
+  scenes:
+    - type: title
+      kicker: Repas de famille
+      text: "Dans quel ordre *servir les vins* ?"
+      anim: rise
+      duration: 3
+    - type: list
+      style: arrow
+      items:
+        - { title: "Le blanc avant le rouge" }
+        - { title: "Le léger avant le puissant" }
+        - { title: "Le sec avant le doux" }
+        - { title: "Le jeune avant le vieux" }
+      duration: 6.5
+    - type: title
+      text: "L'idée : ne jamais *écraser* le vin suivant."
+      anim: words
+      duration: 3
+    - type: cta
+      title: "Compose ton repas avec les vins de ta région"
+      button: Lien en bio
+  caption: |
+    Le repas de famille approche ? Voici les 4 règles pour l'ordre des vins 🍽️
+
+    ➡️ Le blanc avant le rouge
+    ➡️ Le léger avant le puissant
+    ➡️ Le sec avant le doux
+    ➡️ Le jeune avant le vieux
+
+    Le principe : chaque vin ne doit pas écraser le suivant. Enregistre pour les fêtes 📌
+  hashtags: [accordsmetsvins, repasdefamille, conseilvin]
+
 - id: reel-labels-bio-hve-demeter
   ready: true
   look: { palette: menthe, font: classic, bg: dots, transition: fade, hl: underline, kicker: pill }
@@ -891,6 +927,35 @@
     On partagera les meilleures pépites en story 🍇
   hashtags: [pepitesduvin, vinlocal, communaute]
 
+- id: reel-pov-domaine-a-cote
+  ready: true
+  look: { palette: rose, font: bold, bg: blobs, transition: zoom, hl: box, kicker: pill }
+  music: { style: lofi, seed: 7 }
+  scenes:
+    - type: title
+      kicker: POV
+      text: "Tu découvres que le domaine *à 10 minutes de chez toi* fait un vin incroyable."
+      anim: type
+      duration: 4.6
+    - type: bigword
+      word: Depuis
+      text: "…tout ce temps ?"
+      duration: 2.4
+    - type: flash
+      words: ["Moins cher.", "Plus proche.", "Meilleur."]
+      every: 2
+      duration: 3.4
+    - type: cta
+      title: "Découvre ce qui se cache près de chez toi"
+      button: Lien en bio
+  caption: |
+    POV : le meilleur vin que tu aies bu cette année était produit… à 10 minutes de chez toi 🤯
+
+    Ça arrive bien plus souvent qu'on ne le croit. Les domaines près de chez toi n'attendent que toi.
+
+    Tag la personne qui doit voir ça 👇
+  hashtags: [pov, vinlocal, pepitesduvin]
+
 - id: reel-bouteille-ouverte
   ready: true
   look: { palette: blanc, font: poster, bg: waves, transition: slide, hl: box, kicker: pill }
@@ -926,35 +991,6 @@
 
     L'astuce : le frigo ralentit l'oxydation, même pour le rouge (sors-le juste un peu avant de le servir).
   hashtags: [astucevin, antigaspi, conseilvin]
-
-- id: reel-pov-domaine-a-cote
-  ready: true
-  look: { palette: rose, font: bold, bg: blobs, transition: zoom, hl: box, kicker: pill }
-  music: { style: lofi, seed: 7 }
-  scenes:
-    - type: title
-      kicker: POV
-      text: "Tu découvres que le domaine *à 10 minutes de chez toi* fait un vin incroyable."
-      anim: type
-      duration: 4.6
-    - type: bigword
-      word: Depuis
-      text: "…tout ce temps ?"
-      duration: 2.4
-    - type: flash
-      words: ["Moins cher.", "Plus proche.", "Meilleur."]
-      every: 2
-      duration: 3.4
-    - type: cta
-      title: "Découvre ce qui se cache près de chez toi"
-      button: Lien en bio
-  caption: |
-    POV : le meilleur vin que tu aies bu cette année était produit… à 10 minutes de chez toi 🤯
-
-    Ça arrive bien plus souvent qu'on ne le croit. Les domaines près de chez toi n'attendent que toi.
-
-    Tag la personne qui doit voir ça 👇
-  hashtags: [pov, vinlocal, pepitesduvin]
 
 - id: reel-checklist-visite-domaine
   ready: true
@@ -1016,42 +1052,6 @@
 
     Team verre à moitié plein ou team un tiers ? 👇
   hashtags: [servicevin, astucevin, artdevivre]
-
-- id: reel-ordre-des-vins
-  ready: true
-  look: { palette: kraft, font: brut, bg: checker, transition: slide, hl: box, kicker: pill }
-  music: { style: jazz, seed: 42 }
-  scenes:
-    - type: title
-      kicker: Repas de famille
-      text: "Dans quel ordre *servir les vins* ?"
-      anim: rise
-      duration: 3
-    - type: list
-      style: arrow
-      items:
-        - { title: "Le blanc avant le rouge" }
-        - { title: "Le léger avant le puissant" }
-        - { title: "Le sec avant le doux" }
-        - { title: "Le jeune avant le vieux" }
-      duration: 6.5
-    - type: title
-      text: "L'idée : ne jamais *écraser* le vin suivant."
-      anim: words
-      duration: 3
-    - type: cta
-      title: "Compose ton repas avec les vins de ta région"
-      button: Lien en bio
-  caption: |
-    Le repas de famille approche ? Voici les 4 règles pour l'ordre des vins 🍽️
-
-    ➡️ Le blanc avant le rouge
-    ➡️ Le léger avant le puissant
-    ➡️ Le sec avant le doux
-    ➡️ Le jeune avant le vieux
-
-    Le principe : chaque vin ne doit pas écraser le suivant. Enregistre pour les fêtes 📌
-  hashtags: [accordsmetsvins, repasdefamille, conseilvin]
 
 - id: reel-manifeste-circuit-court
   ready: true

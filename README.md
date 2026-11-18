@@ -1,6 +1,6 @@
 # Vinea · posts et reels automatiques Instagram & LinkedIn
 
-Publie automatiquement **une publication tous les 2 jours** sur Instagram et LinkedIn, en alternant **posts** (visuels + légende) et **reels** (vidéos animées avec musique, voir § 2 bis).
+Publie automatiquement **une publication par jour** sur Instagram et LinkedIn, en alternant **posts** (visuels + légende) et **reels** (vidéos animées avec musique, voir § 2 bis).
 100 % gratuit : GitHub Actions (gratuit sur un repo public) + génération des visuels en code (pas de Canva, pas d'IA payante).
 
 ```
@@ -21,7 +21,7 @@ content/posts.yaml ──► visuels PNG 1080×1350 ──► Instagram + Linked
 3. Configure au moins un réseau (ci-dessous), puis lance un premier post à la main :
    onglet **Actions** → *Publier un post Vinea* → **Run workflow** (coche *force*).
 
-Ensuite, c'est automatique : le workflow tourne chaque jour à 18h (Paris) et publie si le dernier post a ≥ 2 jours.
+Ensuite, c'est automatique : le workflow tourne chaque jour vers 18h (Paris) et publie la publication suivante (reel et post en alternance). `npm run planning` affiche le calendrier prévu.
 
 ## 2. Ajouter / modifier du contenu
 
@@ -34,7 +34,7 @@ Les gabarits disponibles (`cover`, `quote`, `list`, `big`, `domaine`, `cta`) et 
 - Les posts **"3 domaines sous-cotés"** et **"domaine du mois"** sont des modèles `ready: false` : remplis-les avec de vrais domaines puis passe-les à `true`.
 - Couleurs et polices : `content/config.yaml` et `src/templates.js`.
 
-Il y a 12 posts prêts, donc environ 24 jours de contenu. Quand la file est vide, le workflow le signale dans ses logs sans rien publier.
+Il y a 12 posts et 32 reels prêts, donc environ 44 jours de contenu (`npm run planning` pour le calendrier). Quand la file est vide, le workflow le signale dans ses logs sans rien publier.
 
 ### Générer de nouveaux posts avec une IA locale (gratuit)
 
@@ -127,7 +127,7 @@ Un réseau sans secret est simplement ignoré.
 
 ## Réglages
 
-- **Fréquence** : `MIN_HOURS_BETWEEN_POSTS` (44 h par défaut) dans `src/run.js` ; heure de passage : le `cron` dans `.github/workflows/post.yml` (en UTC).
+- **Fréquence** : `MIN_HOURS_BETWEEN_POSTS` (20 h, soit 1 par jour) dans `.github/workflows/post.yml` ; heure de passage : le `cron` dans `.github/workflows/post.yml` (en UTC).
 - **Republier un post ou un reel** : retire son entrée de `state/published.json`.
 - **Ordre** : les reels et les posts alternent ; pour ne publier que des posts (ou que des reels), passe les autres en `ready: false`.
 - Si un réseau échoue, le workflow passe en rouge (GitHub t'envoie un e-mail) et le détail de l'erreur est dans les logs.
