@@ -811,7 +811,7 @@ export const SCENES = {
     const { p } = c;
     const z = 1.08 + 0.12 * (c.t / c.d);
     const txt = textBlock(s.text, c, { anim: s.anim ?? 'rise', max: 120, maxH: 600, delay: 0.3, color: '#FFFFFF' });
-    return `<div style="display:flex;position:absolute;top:0;left:0;width:${W}px;height:${H}px;overflow:hidden;">
+    return `<div style="display:flex;position:absolute;top:0;left:0;width:${W}px;height:${H}px;">
       <img src="${s.bgImage}" style="position:absolute;top:0;left:0;width:${W}px;height:${H}px;object-fit:cover;transform:scale(${f2(z)});"/>
       <div style="display:flex;position:absolute;top:0;left:0;width:${W}px;height:${H}px;background:linear-gradient(180deg, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.75) 85%);"></div>
       <div style="display:flex;position:absolute;left:90px;bottom:420px;width:900px;flex-direction:column;">${kicker(s.kicker, { ...c, p: { ...p, accent: '#FFFFFF' } })}${txt.html}</div></div>`;

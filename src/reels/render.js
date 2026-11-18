@@ -92,12 +92,12 @@ export function frameMarkup(reel, ctx, T) {
       case 'spin':
         layers = P(`transform:rotate(${f(e * 12)}deg) scale(${f(1 - e * 0.3)});opacity:${f(1 - e)};`) + C(`transform:rotate(${f((1 - e) * -12)}deg) scale(${f(0.7 + 0.3 * e)});opacity:${f(e)};`);
         break;
-      case 'wipe':
-        layers =
-          P('') +
-          `<div style="display:flex;position:absolute;top:0;left:0;width:${f(e * W)}px;height:${H}px;overflow:hidden;background:${p.bg};">${layer(a.inner, a.bg)}</div>` +
-          `<div style="display:flex;position:absolute;top:0;left:${f(e * W - 24)}px;width:24px;height:${H}px;background:${p.accent};"></div>`;
+      case 'wipe': {
+        // un panneau de couleur balaie l'écran : il recouvre l'ancienne scène puis découvre la nouvelle
+        const x = e < 0.5 ? -W + e * 2 * W : (e - 0.5) * 2 * W;
+        layers = (e < 0.5 ? P('') : C('')) + `<div style="display:flex;position:absolute;top:0;left:${f(x)}px;width:${W}px;height:${H}px;background:${p.accent};"></div>`;
         break;
+      }
       case 'flash': {
         const k = 1 - Math.abs(e * 2 - 1);
         layers = (e < 0.5 ? P('') : C('')) + `<div style="display:flex;position:absolute;top:0;left:0;width:${W}px;height:${H}px;background:${p.fg};opacity:${f(k)};"></div>`;
@@ -119,7 +119,7 @@ export function frameMarkup(reel, ctx, T) {
     overlay += `<div style="display:flex;position:absolute;top:120px;left:90px;width:900px;height:8px;border-radius:4px;background:${p.fg}33;"><div style="display:flex;width:${((T / total) * 900).toFixed(1)}px;height:8px;border-radius:4px;background:${p.accent};"></div></div>`;
   }
   return {
-    markup: `<div style="display:flex;position:relative;width:${W}px;height:${H}px;overflow:hidden;">${layers}${overlay}</div>`,
+    markup: `<div style="display:flex;position:relative;width:${W}px;height:${H}px;">${layers}${overlay}</div>`,
     under: paletteFill(p.bg) + BACKGROUNDS[look.bg](T, p),
   };
 }
